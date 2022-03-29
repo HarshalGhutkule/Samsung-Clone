@@ -7,7 +7,7 @@ const Main = styled.div`
   
   & div:nth-child(1){
       height:150px;
-      border:1px solid red;
+      border:1px solid purple;
   }
   & div h1{
       font-family:SamsungSharpSans;
