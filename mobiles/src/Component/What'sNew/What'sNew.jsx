@@ -15,37 +15,36 @@ const Main = styled.div`
       padding:5%;
   }
   & div:nth-child(2){
-      display:grid;
       height:525px;
-      grid-template-columns: 46% 23% 23%;
-      grid-template-rows: 50% 50%;
+      display:grid;
+      grid-template-columns: 46% 24% 24%;
+      grid-template-rows: 250px 250px;
       grid-template-areas:
         'a b c'
         'a d e';
-        gap: 20px;
       border:1px solid purple;
   }
   & div:nth-child(2) div{
       background-color:#f4f4f4;
       border-radius:10px;
   }
-  & .mainbox{
+  & div:nth-child(2) .mainbox{
     grid-area: a;
     border:1px solid red;
   }
-  & .box1{
+  & div:nth-child(2) .box1{
     grid-area: b;
     border:1px solid red;
   }
-  & .box2{
+  & div:nth-child(2) .box2{
     grid-area: c;
     border:1px solid red;
   }
-  & .box3{
+  & div:nth-child(2) .box3{
     grid-area: d;
     border:1px solid red;
   }
-  & .box4{
+  & div:nth-child(2) .box4{
     grid-area: e;
     border:1px solid red;
   }
