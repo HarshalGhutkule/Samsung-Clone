@@ -13,9 +13,10 @@ export const LineupCard = () => {
 
   const Main = styled.div`
     height: 600px;
-    width: 18%;
+    width: 250px;
     margin: auto;
     border-radius: 20px;
+    background-color:white;
 
     & .badge {
       height: 8%;
@@ -57,6 +58,10 @@ export const LineupCard = () => {
       margin:3%;
 
     }
+    & .emiDes{
+      width:90%;
+      margin:auto;
+    }
     & .buyNow {
       height: 35px;
       width: 65%;
@@ -66,7 +71,7 @@ export const LineupCard = () => {
       color: white;
       font-weight: 700;
       font-size: 13px;
-      margin-left: 15px;
+      margin: auto;
     }
     & .buyNow:hover {
       opacity: 75%;
@@ -182,7 +187,7 @@ export const LineupCard = () => {
             512GB
           </span>
         </div>
-        <p>From ₹{emi.toFixed(2)}/mo for 24 mos at 14.99% Interest or ₹ {mobilePrice.toFixed(2)}</p>
+        <p className="emiDes">From ₹{emi.toFixed(2)}/mo for 24 mos at 14.99% Interest or ₹ {mobilePrice.toFixed(2)}</p>
         <p>
           <span>₹ {(mobilePrice+save).toFixed(2)}</span> <span>Save ₹{save.toFixed(2)}</span>
         </p>
