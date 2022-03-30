@@ -59,6 +59,7 @@ export const ReactCurousel = () => {
       <SubMain>
         <Carousel.Item interval={5000}>
           <video
+            loop
             autoPlay
             muted
             style={{ width: "100%", height: "100%" }}
