@@ -2,13 +2,12 @@ import styled from "styled-components";
 import { Heart, CircleFill,HeartFill } from "react-bootstrap-icons";
 import { useState } from "react";
 
-export const LineupCard = () => {
-  const [imageUrl, setImageUrl] = useState(
-    "https://images.samsung.com/is/image/samsung/p6pim/in/2108/gallery/in-galaxy-z-fold3-f926-5g-sm-f926bzkdinu-thumb-474118710?$216_216_PNG$"
-  );
+export const LineupCard = ({productName,cardImage,colorImage,newBadge,price,discount,colors,storage}) => {
+  
+  const [imageUrl, setImageUrl] = useState(cardImage[0]);
 
-  const [mobileColor, setmobileColor] = useState("Phantom Black");
-  const [mobilePrice, setmobilePrice] = useState(149999.00);
+  const [mobileColor, setmobileColor] = useState(colors[0]);
+  const [mobilePrice, setmobilePrice] = useState(price[0]);
   const [heartColor, setheartColor] = useState("black");
 
   const Main = styled.div`
@@ -78,37 +77,12 @@ export const LineupCard = () => {
     }
   `;
 
-  const imageArray = [
-    "https://images.samsung.com/is/image/samsung/p6pim/in/2108/gallery/in-galaxy-z-fold3-f926-5g-sm-f926bzgdinu-thumb-474118691?$216_216_PNG$",
-    "https://images.samsung.com/is/image/samsung/p6pim/in/2108/gallery/in-galaxy-z-fold3-f926-5g-sm-f926bzkdinu-thumb-474118701?$216_216_PNG$",
-    "https://images.samsung.com/is/image/samsung/p6pim/in/2108/gallery/in-galaxy-z-fold3-f926-5g-sm-f926bzkdinu-thumb-474118702?$216_216_PNG$",
-    "https://images.samsung.com/is/image/samsung/p6pim/in/2108/gallery/in-galaxy-z-fold3-f926-5g-sm-f926bzkdinu-thumb-474118703?$216_216_PNG$",
-    "https://images.samsung.com/is/image/samsung/p6pim/in/2108/gallery/in-galaxy-z-fold3-f926-5g-sm-f926bzkdinu-thumb-474118704?$216_216_PNG$",
-    "https://images.samsung.com/is/image/samsung/p6pim/in/2108/gallery/in-galaxy-z-fold3-f926-5g-sm-f926bzkdinu-thumb-474118705?$216_216_PNG$",
-    "https://images.samsung.com/is/image/samsung/p6pim/in/2108/gallery/in-galaxy-z-fold3-f926-5g-sm-f926bzkdinu-thumb-474118706?$216_216_PNG$",
-  ];
-  const image1 =
-    "https://images.samsung.com/is/image/samsung/p6pim/in/2108/gallery/in-galaxy-z-fold3-f926-5g-sm-f926bzkdinu-thumb-474118710?$216_216_PNG$";
-  const image2 =
-    "https://images.samsung.com/is/image/samsung/p6pim/in/2108/gallery/in-galaxy-z-fold3-f926-5g-sm-f926bzgdinu-thumb-474118691?$216_216_PNG$";
-  const image3 =
-    "https://images.samsung.com/is/image/samsung/p6pim/in/sm-f926bzsdinu/gallery/in-galaxy-z-fold3-f926-5g-396759-sm-f926bzsdinu-thumb-522779013?$216_216_PNG$";
-
-    const colors1 = "Phantom Black";
-    const colors2 = "Phantom Green";
-    const colors3 = "Phantom Silver";
-
-    const price1 = 149999.00;
-    const price2 = 157999.00;
-
-    const save = 22000;
-
   //function for image interval
   let a;
   let i = 0;
   const imageInterval = (e) => {
     a = setInterval(() => {
-      e.target.src = imageArray[i];
+      e.target.src = cardImage[i];
       i++;
       if (i === 6) {
         i = 0;
@@ -119,7 +93,7 @@ export const LineupCard = () => {
   const clearImageInterval = (e) => {
     clearInterval(a);
     i = 0;
-    e.target.src = imageArray[i];
+    e.target.src = cardImage[i];
   };
 
   //change product color
@@ -138,7 +112,7 @@ export const LineupCard = () => {
   return (
     <Main>
       <div className="badge">
-        <span
+        {newBadge === "true"? <span
           class="w3-badge w3-blue"
           style={{
             borderRadius: "10px",
@@ -149,7 +123,8 @@ export const LineupCard = () => {
           }}
         >
           New
-        </span>
+        </span> : <></>}
+        
         {heartColor === "black"? <Heart
           color={heartColor}
           size={20}
@@ -169,27 +144,27 @@ export const LineupCard = () => {
           onMouseOver={(e) => imageInterval(e)}
           onMouseOut={clearImageInterval}
           src={imageUrl}
-          alt="mobile"
+          alt="Not available"
         />
       </div>
       <div className="textDiv">
-        <p>Galaxy Z Fold3 5G</p>
+        <p>{productName}</p>
         <p>Color : {mobileColor}</p>
         <div className="radiobtnDiv">
-          <CircleFill color="black" onClick={()=>{handleChange(image1,colors1)}} style={{border:"1px solid black",borderRadius:"50%"}}/>
-          <CircleFill color="#1f2923" onClick={()=>{handleChange(image2,colors2)}} style={{border:"1px solid black",borderRadius:"50%"}}/>
-          <CircleFill color="silver" onClick={()=>{handleChange(image3,colors3)}} style={{border:"1px solid black",borderRadius:"50%"}}/>
+          <CircleFill color={colors[0]} onClick={()=>{handleChange(colorImage[0],colors[0])}} style={{border:"1px solid black",borderRadius:"50%"}}/>
+          <CircleFill color={colors[1] === undefined ? "white" : colors[1]} onClick={()=>{if(colorImage[1] !== undefined) handleChange(colorImage[1],colors[1])}} style={{border:`${colors[1] === undefined ? "1px solid white":"1px solid black"}`,borderRadius:"50%"}}/>
+          <CircleFill color={colors[2] === undefined ? "white" : colors[2]} onClick={()=>{if(colorImage[2] !== undefined) handleChange(colorImage[2],colors[2])}} style={{border:`${colors[2] === undefined ? "1px solid white":"1px solid black"}`,borderRadius:"50%"}}/>
         </div>
         <div className="ram">
-        <span onClick={()=>handlePrice(price1)} class="w3-badge w3-white" style={{borderRadius: "15px",fontSize: "12px",  border:`${mobilePrice === price1? "1px solid black" : "1px solid smokewhite" }`, cursor:"pointer"}}>
-            256GB
-          </span> <span onClick={()=>handlePrice(price2)} class="w3-badge w3-white" style={{borderRadius: "15px",fontSize: "12px", border:`${mobilePrice === price2? "1px solid black" : "1px solid smokewhite" }`, cursor:"pointer"}}>
-            512GB
+        <span onClick={()=>handlePrice(price[0])} class="w3-badge w3-white" style={{borderRadius: "15px",fontSize: "12px",  border:`${mobilePrice === price[0]? "1px solid black" : "1px solid smokewhite" }`, cursor:"pointer"}}>
+            {storage[0]}
+          </span> <span onClick={()=>handlePrice(price[1])} class="w3-badge w3-white" style={{borderRadius: "15px",fontSize: "12px", border:`${mobilePrice === price[1]? "1px solid black" : "1px solid smokewhite" }`, cursor:"pointer"}}>
+            {storage[1]}
           </span>
         </div>
         <p className="emiDes">From ₹{emi.toFixed(2)}/mo for 24 mos at 14.99% Interest or ₹ {mobilePrice.toFixed(2)}</p>
         <p>
-          <span>₹ {(mobilePrice+save).toFixed(2)}</span> <span>Save ₹{save.toFixed(2)}</span>
+          <span>₹ {(mobilePrice+discount).toFixed(2)}</span> <span>Save ₹{discount.toFixed(2)}</span>
         </p>
         <button className="buyNow">Buy now</button>
       </div>

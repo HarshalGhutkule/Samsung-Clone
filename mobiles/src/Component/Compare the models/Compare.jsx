@@ -1,7 +1,21 @@
 import { LineupCard } from "../Lineup-card/LineupCard";
 import styled from "styled-components";
+import axios from "axios";
+import { useState } from "react";
+import { useSelector } from "react-redux";
 
 export const Compare = () => {
+
+    const data = useSelector((store)=>store.compare);
+    console.log("data",data);
+
+    const [productCompare1, setproductCompare1] = useState(null);
+    const [productCompare2, setproductCompare2] = useState(null);
+    const [productCompare3, setproductCompare3] = useState(null);
+
+    console.log("asd",productCompare1.length);
+
+
   const Main = styled.div`
     height: 2130px;
     width:100%;
@@ -69,6 +83,29 @@ export const Compare = () => {
     }
   `;
 
+  const handleChange1 = (e)=>{
+    axios.get(`http://localhost:3001/mobiles`).then(({data})=>{
+        setproductCompare1(data.filter((a)=>a.product_name === e.target.value));
+    })
+  }
+
+  const handleChange2 = (e)=>{
+    axios.get(`http://localhost:3001/mobiles`).then(({data})=>{
+        setproductCompare2(data.filter((a)=>a.product_name === e.target.value));
+    })
+  }
+
+  const handleChange3 = (e)=>{
+    axios.get(`http://localhost:3001/mobiles`).then(({data})=>{
+        setproductCompare3(data.filter((a)=>a.product_name === e.target.value));
+    })
+  }
+
+//   if(productCompare1.length === 0 || productCompare2.length === 0 || productCompare3.length === 0){
+//       return null;
+//   }
+
+
   return (
     <Main>
       <div>
@@ -78,128 +115,149 @@ export const Compare = () => {
           <select name="" className="dropDown modelDropdown" >
             <option value="Model">Model</option>
           </select>
-          <select name="" className="dropDown">
-              <option value="Galaxy S22 Ultra">Galaxy S22 Ultra</option>
-              <option value="Galaxy S20 FE 5G">Galaxy S20 FE 5G</option>
-              <option value="Galaxy S21+ 5G">Galaxy S21+ 5G</option>
-              <option value="Galaxy S21 Ultra 5G">Galaxy S21 Ultra 5G</option>
-              <option value="Galaxy A72">Galaxy A72</option>
+          <select name="" className="dropDown" onChange={handleChange1}>
+              <option value="Galaxy Z Fold3 5G">Galaxy Z Fold3 5G</option>
+              <option value="Galaxy Z Flip3 5G">Galaxy Z Flip3 5G</option>
+              <option value="Galaxy Z Fold2 5G">Galaxy Z Fold2 5G</option>
+              <option value="Galaxy Z Flip">Galaxy Z Flip</option>
               <option value="Galaxy S22 Ultra">Galaxy S22 Ultra</option>
               <option value="Galaxy S22+">Galaxy S22+</option>
               <option value="Galaxy S22">Galaxy S22</option>
+              <option value="Galaxy Note20 Ultra">Galaxy Note20 Ultra</option>
+              <option value="Galaxy Note20">Galaxy Note20</option>
+              <option value="Galaxy A53 5G (8GB RAM)">Galaxy A53 5G (8GB RAM)</option>
+              <option value="Galaxy A03s (4GB RAM)">Galaxy A03s (4GB RAM)</option>
+              <option value="Galaxy A22 5G (8GB RAM)">Galaxy A22 5G (8GB RAM)</option>
+              <option value="Galaxy A22 (6GB RAM)">Galaxy A22 (6GB RAM)</option>
           </select>
-          <select name="" className="dropDown">
-          <option value="Galaxy S22 Ultra">Galaxy S22 Ultra</option>
-              <option value="Galaxy S20 FE 5G">Galaxy S20 FE 5G</option>
-              <option value="Galaxy S21+ 5G">Galaxy S21+ 5G</option>
-              <option value="Galaxy S21 Ultra 5G">Galaxy S21 Ultra 5G</option>
-              <option value="Galaxy A72">Galaxy A72</option>
+          <select name="" className="dropDown" onChange={handleChange2}>
+              <option value="Galaxy Z Fold3 5G">Galaxy Z Fold3 5G</option>
+              <option value="Galaxy Z Flip3 5G">Galaxy Z Flip3 5G</option>
+              <option value="Galaxy Z Fold2 5G">Galaxy Z Fold2 5G</option>
+              <option value="Galaxy Z Flip">Galaxy Z Flip</option>
               <option value="Galaxy S22 Ultra">Galaxy S22 Ultra</option>
               <option value="Galaxy S22+">Galaxy S22+</option>
               <option value="Galaxy S22">Galaxy S22</option>
+              <option value="Galaxy Note20 Ultra">Galaxy Note20 Ultra</option>
+              <option value="Galaxy Note20">Galaxy Note20</option>
+              <option value="Galaxy A53 5G (8GB RAM)">Galaxy A53 5G (8GB RAM)</option>
+              <option value="Galaxy A03s (4GB RAM)">Galaxy A03s (4GB RAM)</option>
+              <option value="Galaxy A22 5G (8GB RAM)">Galaxy A22 5G (8GB RAM)</option>
+              <option value="Galaxy A22 (6GB RAM)">Galaxy A22 (6GB RAM)</option>
           </select>
-          <select name="" className="dropDown">
-          <option value="Galaxy S22 Ultra">Galaxy S22 Ultra</option>
-              <option value="Galaxy S20 FE 5G">Galaxy S20 FE 5G</option>
-              <option value="Galaxy S21+ 5G">Galaxy S21+ 5G</option>
-              <option value="Galaxy S21 Ultra 5G">Galaxy S21 Ultra 5G</option>
-              <option value="Galaxy A72">Galaxy A72</option>
+          <select name="" className="dropDown" onChange={handleChange3}>
+              <option value="Galaxy Z Fold3 5G">Galaxy Z Fold3 5G</option>
+              <option value="Galaxy Z Flip3 5G">Galaxy Z Flip3 5G</option>
+              <option value="Galaxy Z Fold2 5G">Galaxy Z Fold2 5G</option>
+              <option value="Galaxy Z Flip">Galaxy Z Flip</option>
               <option value="Galaxy S22 Ultra">Galaxy S22 Ultra</option>
               <option value="Galaxy S22+">Galaxy S22+</option>
               <option value="Galaxy S22">Galaxy S22</option>
+              <option value="Galaxy Note20 Ultra">Galaxy Note20 Ultra</option>
+              <option value="Galaxy Note20">Galaxy Note20</option>
+              <option value="Galaxy A53 5G (8GB RAM)">Galaxy A53 5G (8GB RAM)</option>
+              <option value="Galaxy A03s (4GB RAM)">Galaxy A03s (4GB RAM)</option>
+              <option value="Galaxy A22 5G (8GB RAM)">Galaxy A22 5G (8GB RAM)</option>
+              <option value="Galaxy A22 (6GB RAM)">Galaxy A22 (6GB RAM)</option>
           </select>
       </div>
       <br />
       <div className="flexDiv">
-        <LineupCard />
-        <LineupCard />
-        <LineupCard />
+        {productCompare1 && productCompare1.map((el)=>(
+          <LineupCard key={el._id} productName={el.product_name} cardImage={el.cardImage} newBadge={el.new} colors={el.color} colorImage={el.colorImage1} price={el.price} discount={el.discount} storage={el.description.Storage}/>
+        ))}
+        {productCompare2 && productCompare2.map((el)=>(
+          <LineupCard key={el._id} productName={el.product_name} cardImage={el.cardImage} newBadge={el.new} colors={el.color} colorImage={el.colorImage1} price={el.price} discount={el.discount} storage={el.description.Storage}/>
+        ))}
+        {productCompare3 && productCompare3.map((el)=>(
+          <LineupCard key={el._id} productName={el.product_name} cardImage={el.cardImage} newBadge={el.new} colors={el.color} colorImage={el.colorImage1} price={el.price} discount={el.discount} storage={el.description.Storage}/>
+        ))}
       </div>
       <br />
       <div className="comparison">
           <div className="subComparison">
               <p>CPU Speed</p>
-              <p>2.99GHz, 2.4GHz, 1.7GHz</p>
-              <p>2.99GHz, 2.4GHz, 1.7GHz</p>
-              <p>2.99GHz, 2.4GHz, 1.7GHz</p>
+              <p>{productCompare1 && productCompare1[0].description.CPUSpeed}</p>
+              <p>{productCompare2 && productCompare2[0].description.CPUSpeed}</p>
+              <p>{productCompare3 && productCompare3[0].description.CPUSpeed}</p>
           </div>
           <div className="subComparison">
               <p>CPU Type</p>
-              <p>Octa-Core</p>
-              <p>Octa-Core</p>
-              <p>Octa-Core</p>
+              <p>{productCompare1 && productCompare1[0].description.CPUType}</p>
+              <p>{productCompare2 && productCompare2[0].description.CPUType}</p>
+              <p>{productCompare3 && productCompare3[0].description.CPUType}</p>
           </div>
           <div className="subComparison">
               <p>Size (Main_Display)</p>
-              <p>17.31cm (6.8") full rectangle / 17.25cm (6.8") rounded corners</p>
-              <p>16.65cm (6.6") full rectangle / 16.21cm (6.4") rounded corners</p>
-              <p>15.39cm (6.1") full rectangle / 14.99cm (5.9") rounded corners</p>
+              <p>{productCompare1 && productCompare1[0].description.SizeMainDisplay}</p>
+              <p>{productCompare2 && productCompare2[0].description.SizeMainDisplay}</p>
+              <p>{productCompare3 && productCompare3[0].description.SizeMainDisplay}</p>
           </div>
           <div className="subComparison">
               <p>Resolution (Main Display)</p>
-              <p>3088 x 1440 (Quad HD+)</p>
-              <p>2340 x 1080 (FHD+)</p>
-              <p>2340 x 1080 (FHD+)</p>
+              <p>{productCompare1 && productCompare1[0].description.ResolutionMainDisplay}</p>
+              <p>{productCompare2 && productCompare2[0].description.ResolutionMainDisplay}</p>
+              <p>{productCompare3 && productCompare3[0].description.ResolutionMainDisplay}</p>
           </div>
           <div className="subComparison">
               <p>RAM_Size (GB)</p>
-              <p>12</p>
-              <p>8</p>
-              <p>8</p>
+              <p>{productCompare1 && productCompare1[0].description.RAMSizeGB}</p>
+              <p>{productCompare2 && productCompare2[0].description.RAMSizeGB}</p>
+              <p>{productCompare3 && productCompare3[0].description.RAMSizeGB}</p>
           </div>
           <div className="subComparison">
               <p>ROM Size (GB)</p>
-              <p>256</p>
-              <p>128</p>
-              <p>128</p>
+              <p>{productCompare1 && productCompare1[0].description.ROMSizeGB}</p>
+              <p>{productCompare2 && productCompare2[0].description.ROMSizeGB}</p>
+              <p>{productCompare3 && productCompare3[0].description.ROMSizeGB}</p>
           </div>
           <div className="subComparison">
               <p>Dimension (HxWxD, mm)</p>
-              <p>163.3 x 77.9 x 8.9</p>
-              <p>157.4 x 75.8 x 7.6</p>
-              <p>146.0 x 70.6 x 7.6</p>
+              <p>{productCompare1 && productCompare1[0].description.Dimension}</p>
+              <p>{productCompare2 && productCompare2[0].description.Dimension}</p>
+              <p>{productCompare3 && productCompare3[0].description.Dimension}</p>
           </div>
           <div className="subComparison">
               <p>Weight (g)</p>
-              <p>228</p>
-              <p>195</p>
-              <p>167</p>
+              <p>{productCompare1 && productCompare1[0].description.Weight}</p>
+              <p>{productCompare2 && productCompare2[0].description.Weight}</p>
+              <p>{productCompare3 && productCompare3[0].description.Weight}</p>
           </div>
           <div className="subComparison">
               <p>Battery Capacity (mAh, Typical)</p>
-              <p>5000</p>
-              <p>4500</p>
-              <p>3700</p>
+              <p>{productCompare1 && productCompare1[0].description.BatteryCapacity}</p>
+              <p>{productCompare2 && productCompare2[0].description.BatteryCapacity}</p>
+              <p>{productCompare3 && productCompare3[0].description.BatteryCapacity}</p>
           </div>
           <div className="subComparison">
               <p>Rear Camera - Resolution (Multiple)</p>
-              <p>108.0 MP + 10.0 MP + 12.0 MP + 10.0 MP</p>
-              <p>50.0 MP + 10.0 MP + 12.0 MP</p>
-              <p>50.0 MP + 10.0 MP + 12.0 MP</p>
+              <p>{productCompare1 && productCompare1[0].description.RearCameraResolution}</p>
+              <p>{productCompare2 && productCompare2[0].description.RearCameraResolution}</p>
+              <p>{productCompare3 && productCompare3[0].description.RearCameraResolution}</p>
           </div>
           <div className="subComparison">
               <p>Infra</p>
-              <p>2G GSM, 3G WCDMA, 4G LTE FDD, 4G LTE TDD, 5G Sub6 FDD, 5G Sub6 TDD</p>
-              <p>2G GSM, 3G WCDMA, 4G LTE FDD, 4G LTE TDD, 5G Sub6 FDD, 5G Sub6 TDD</p>
-              <p>2G GSM, 3G WCDMA, 4G LTE FDD, 4G LTE TDD, 5G Sub6 FDD, 5G Sub6 TDD</p>
+              <p>{productCompare1 && productCompare1[0].description.Infra}</p>
+              <p>{productCompare2 && productCompare2[0].description.Infra}</p>
+              <p>{productCompare3 && productCompare3[0].description.Infra}</p>
           </div>
           <div className="subComparison">
               <p>Rear Camera - F Number (Multiple)</p>
-              <p>F1.8 , F4.9 , F2.2 , F2.4</p>
-              <p>F1.8 , F2.4 , F2.2</p>
-              <p>F1.8 , F2.4 , F2.2</p>
+              <p>{productCompare1 && productCompare1[0].description.RearCameraFNumber}</p>
+              <p>{productCompare2 && productCompare2[0].description.RearCameraFNumber}</p>
+              <p>{productCompare3 && productCompare3[0].description.RearCameraFNumber}</p>
           </div>
           <div className="subComparison">
               <p>Front Camera - Resolution</p>
-              <p>40.0 MP</p>
-              <p>10.0 MP</p>
-              <p>10.0 MP</p>
+              <p>{productCompare1 && productCompare1[0].description.FrontCameraResolution}</p>
+              <p>{productCompare2 && productCompare2[0].description.FrontCameraResolution}</p>
+              <p>{productCompare3 && productCompare3[0].description.FrontCameraResolution}</p>
           </div>
           <div className="subComparison">
               <p>Front Camera - F Number</p>
-              <p>F2.2</p>
-              <p>F2.2</p>
-              <p>F2.2</p>
+              <p>{productCompare1 && productCompare1[0].description.FrontCameraFNumber}</p>
+              <p>{productCompare2 && productCompare2[0].description.FrontCameraFNumber}</p>
+              <p>{productCompare3 && productCompare3[0].description.FrontCameraFNumber}</p>
           </div>
           <br />
           <div className="compareInfo">
