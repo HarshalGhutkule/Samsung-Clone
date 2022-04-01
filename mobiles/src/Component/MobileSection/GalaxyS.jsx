@@ -2,6 +2,7 @@ import { LineupCard } from "../Lineup-card/LineupCard";
 import styled from "styled-components";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 export const GalaxyS = () => {
 
@@ -31,6 +32,10 @@ export const GalaxyS = () => {
     & .seeAll:hover {
       background-color: #e8e8e8;
     }
+    & .seeAll>a{
+      color: black;
+      text-decoration:none;
+    }
   `;
 
   useEffect(() => {
@@ -59,7 +64,7 @@ export const GalaxyS = () => {
       <br />
       <br />
       <br />
-      <button className="seeAll">See all</button>
+      <button className="seeAll"><Link to={"/mobiles"}>See all</Link></button>
     </Main>
   );
 };

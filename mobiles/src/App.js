@@ -19,8 +19,7 @@ function App() {
   return (
     <div className="App">
       <Navbar/>
-      <MobileList/>
-      {/* <ReactCurousel/>
+      <ReactCurousel/>
       <WhatsNew/>
       <ImageLoaded image={"https://images.samsung.com/is/image/samsung/assets/in/2108/pcd/smp/pc/PCD_COMBO_KV_Main-KV_1440X640_LTR.jpg?$1440_640_JPG$"} title={"Galaxy Z"} description={"Unfold your world with the completely reimagined smartphone experience."} top={"1650px"} color={"black"} margin={"55%"}/>
       <GalaxyZ/>
@@ -32,10 +31,10 @@ function App() {
       <GalaxyASeries/>
       <ImageLoaded image={"https://images.samsung.com/is/image/samsung/assets/in/2202/pcd/smp/PCD_Ecosystem_KV_Curation-KV_1440x640_pc.jpg?$1440_640_JPG$"} title={"Amazing Alone.Better Together"} description={"Awesome is for everyone"} top={"7300px"} color={"black"} margin={"10%"}/>
       <AmazingAloneBetterTogether/>
-      <Compare/> */}
+      <Compare/>
       <ScrollToTop />
       <Routes>
-        <Route path='' element={""}/>
+        <Route path='/mobiles' element={<MobileList/>}/>
       </Routes>
     </div>
   );

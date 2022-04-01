@@ -4,6 +4,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch,useSelector } from "react-redux";
 import { compareData } from "../../Redux/action";
+import { Link } from "react-router-dom";
 
 export const GalaxyZ = () => {
 
@@ -35,6 +36,10 @@ export const GalaxyZ = () => {
     & .seeAll:hover {
         background-color: #e8e8e8;
     }
+    & .seeAll>a{
+      color: black;
+      text-decoration:none;
+    }
   `;
 
   useEffect(()=>{
@@ -65,7 +70,7 @@ export const GalaxyZ = () => {
       <br />
       <br />
       <br />
-      <button className="seeAll">See all</button>
+      <button className="seeAll"><Link to={"/mobiles"}>See all</Link></button>
     </Main>
   );
 };

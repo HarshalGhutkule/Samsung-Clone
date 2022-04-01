@@ -3,7 +3,7 @@ import { Heart, CircleFill,HeartFill } from "react-bootstrap-icons";
 import { useState } from "react";
 
 export const LineupCard = ({cardWidth,productName,cardImage,colorImage,newBadge,price,discount,colors,storage}) => {
-  console.log(cardWidth);
+  
   const [imageUrl, setImageUrl] = useState(cardImage[0]);
 
   const [mobileColor, setmobileColor] = useState(colors[0]);
@@ -164,7 +164,7 @@ export const LineupCard = ({cardWidth,productName,cardImage,colorImage,newBadge,
         </div>
         <p className="emiDes">From ₹{emi.toFixed(2)}/mo for 24 mos at 14.99% Interest or ₹ {mobilePrice.toFixed(2)}</p>
         <p>
-          <span>₹ {(mobilePrice+discount).toFixed(2)}</span> <span>Save ₹{discount.toFixed(2)}</span>
+          <span>₹ {(mobilePrice+discount).toFixed(2)}</span> <span>Save ₹{discount && discount.toFixed(2)}</span>
         </p>
         <button className="buyNow">Buy now</button>
       </div>

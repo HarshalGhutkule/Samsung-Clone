@@ -38,6 +38,10 @@ export const ReactCurousel = () => {
     & Button:hover {
       opacity: 75%;
     }
+    & Button > a{
+      color:white;
+      text-decoration:none;
+    }
   `;
 
   const SubMain = styled(Carousel)`
@@ -78,7 +82,7 @@ export const ReactCurousel = () => {
             </h1>
             <p>Get additional benefits worth ₹ 19000</p>
             <Link to={"/"}>Learn More</Link>
-            <button>Pre-book now</button>
+            <button><Link to={"/mobiles"}>Buy now</Link></button>
           </Main>
         </Carousel.Item>
         <Carousel.Item interval={2000}>
@@ -95,7 +99,7 @@ export const ReactCurousel = () => {
             </h1>
             <p>Unfold your world</p>
             <Link to={"/"}>Learn More</Link>
-            <button>Buy now</button>
+            <button><Link to={"/mobiles"}>Buy now</Link></button>
           </Main>
         </Carousel.Item>
         <Carousel.Item>
@@ -108,7 +112,7 @@ export const ReactCurousel = () => {
             <h1>Galaxy A52s 5G</h1>
             <p>Snapdragon 778G | 120Hz sAMOLED | 5G Guarantee</p>
             <Link to={"/"}>Learn More</Link>
-            <button>Buy now</button>
+            <button><Link to={"/mobiles"}>Buy now</Link></button>
           </Main>
         </Carousel.Item>
       </SubMain>

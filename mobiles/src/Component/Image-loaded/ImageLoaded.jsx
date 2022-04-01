@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const ImageLoaded = ({image,title,description,top,color,margin}) => {
@@ -14,7 +15,7 @@ export const ImageLoaded = ({image,title,description,top,color,margin}) => {
       font-family: SamsungSharpSans;
       font-size: 46px;
     }
-    & Button {
+    & button {
       height: 35px;
       width: 100px;
       background-color: ${color};
@@ -25,8 +26,12 @@ export const ImageLoaded = ({image,title,description,top,color,margin}) => {
       font-size: 13px;
       margin-left: 15px;
     }
-    & Button:hover {
+    & button:hover {
       opacity: 75%;
+    }
+    & a{
+      color:white;
+      text-decoration:none;
     }
   `;
 
@@ -43,7 +48,7 @@ export const ImageLoaded = ({image,title,description,top,color,margin}) => {
           <br />
           <p>{description}</p>
           <br />
-          <button>See all</button>
+          <button><Link to={"/mobiles"}>See all</Link></button>
         </Main>
       </div>
     </div>
