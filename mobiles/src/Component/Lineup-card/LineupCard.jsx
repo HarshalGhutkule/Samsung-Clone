@@ -2,8 +2,8 @@ import styled from "styled-components";
 import { Heart, CircleFill,HeartFill } from "react-bootstrap-icons";
 import { useState } from "react";
 
-export const LineupCard = ({productName,cardImage,colorImage,newBadge,price,discount,colors,storage}) => {
-  
+export const LineupCard = ({cardWidth,productName,cardImage,colorImage,newBadge,price,discount,colors,storage}) => {
+  console.log(cardWidth);
   const [imageUrl, setImageUrl] = useState(cardImage[0]);
 
   const [mobileColor, setmobileColor] = useState(colors[0]);
@@ -12,7 +12,7 @@ export const LineupCard = ({productName,cardImage,colorImage,newBadge,price,disc
 
   const Main = styled.div`
     height: 600px;
-    width: 250px;
+    width: ${cardWidth !== undefined ? cardWidth : "250px"};
     margin: auto;
     border-radius: 20px;
     background-color:white;

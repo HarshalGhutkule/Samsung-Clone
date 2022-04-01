@@ -7,13 +7,10 @@ import { useSelector } from "react-redux";
 export const Compare = () => {
 
     const data = useSelector((store)=>store.compare);
-    console.log("data",data);
 
-    const [productCompare1, setproductCompare1] = useState(null);
-    const [productCompare2, setproductCompare2] = useState(null);
-    const [productCompare3, setproductCompare3] = useState(null);
-
-    console.log("asd",productCompare1.length);
+    const [productCompare1, setproductCompare1] = useState(data.length === 0 ? null : data);
+    const [productCompare2, setproductCompare2] = useState(data.length === 0 ? null : data);
+    const [productCompare3, setproductCompare3] = useState(data.length === 0 ? null : data);
 
 
   const Main = styled.div`
@@ -84,18 +81,21 @@ export const Compare = () => {
   `;
 
   const handleChange1 = (e)=>{
+      
     axios.get(`http://localhost:3001/mobiles`).then(({data})=>{
         setproductCompare1(data.filter((a)=>a.product_name === e.target.value));
     })
   }
 
   const handleChange2 = (e)=>{
+      
     axios.get(`http://localhost:3001/mobiles`).then(({data})=>{
         setproductCompare2(data.filter((a)=>a.product_name === e.target.value));
     })
   }
 
   const handleChange3 = (e)=>{
+      
     axios.get(`http://localhost:3001/mobiles`).then(({data})=>{
         setproductCompare3(data.filter((a)=>a.product_name === e.target.value));
     })
@@ -112,10 +112,10 @@ export const Compare = () => {
         <h1>Compare the models</h1>
       </div>
       <div className="selectTag">
-          <select name="" className="dropDown modelDropdown" >
+          <select className="dropDown modelDropdown" >
             <option value="Model">Model</option>
           </select>
-          <select name="" className="dropDown" onChange={handleChange1}>
+          <select className="dropDown" onChange={handleChange1}>
               <option value="Galaxy Z Fold3 5G">Galaxy Z Fold3 5G</option>
               <option value="Galaxy Z Flip3 5G">Galaxy Z Flip3 5G</option>
               <option value="Galaxy Z Fold2 5G">Galaxy Z Fold2 5G</option>
@@ -130,7 +130,7 @@ export const Compare = () => {
               <option value="Galaxy A22 5G (8GB RAM)">Galaxy A22 5G (8GB RAM)</option>
               <option value="Galaxy A22 (6GB RAM)">Galaxy A22 (6GB RAM)</option>
           </select>
-          <select name="" className="dropDown" onChange={handleChange2}>
+          <select className="dropDown" onChange={handleChange2}>
               <option value="Galaxy Z Fold3 5G">Galaxy Z Fold3 5G</option>
               <option value="Galaxy Z Flip3 5G">Galaxy Z Flip3 5G</option>
               <option value="Galaxy Z Fold2 5G">Galaxy Z Fold2 5G</option>
@@ -145,7 +145,7 @@ export const Compare = () => {
               <option value="Galaxy A22 5G (8GB RAM)">Galaxy A22 5G (8GB RAM)</option>
               <option value="Galaxy A22 (6GB RAM)">Galaxy A22 (6GB RAM)</option>
           </select>
-          <select name="" className="dropDown" onChange={handleChange3}>
+          <select className="dropDown" onChange={handleChange3}>
               <option value="Galaxy Z Fold3 5G">Galaxy Z Fold3 5G</option>
               <option value="Galaxy Z Flip3 5G">Galaxy Z Flip3 5G</option>
               <option value="Galaxy Z Fold2 5G">Galaxy Z Fold2 5G</option>
@@ -271,6 +271,7 @@ export const Compare = () => {
               <p>* S pen Fold Edition sold separately and is only compatible with Galaxy Z Fold3 5G.</p>
               <p>*5G Devices are 5G ready, connectivity dependent on network availability.</p>
           </div>
+          
       </div>
     </Main>
   );
