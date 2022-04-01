@@ -2,7 +2,7 @@ import { LineupCard } from "../Lineup-card/LineupCard";
 import styled from "styled-components";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useDispatch,useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import { compareData } from "../../Redux/action";
 import { Link } from "react-router-dom";
 
@@ -49,7 +49,7 @@ export const GalaxyZ = () => {
   const getData = ()=>{
     axios.get("http://localhost:3001/mobiles").then(({data})=>{
       setGalaxyZ(data.slice(0,4));
-      dispatch(compareData(data.slice(0,1)));
+      dispatch(compareData(data));
     })
   }
 

@@ -1,14 +1,19 @@
 import styled from "styled-components";
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { LineupCard } from "../Lineup-card/LineupCard";
 import { FunnelFill } from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import {EmojiFrown} from "react-bootstrap-icons";
 
 export const MobileList = () => {
 
-  let [mobileData, setMobileData] = useState(null);
-  const [results, setResults] = useState(0);
+    let data = useSelector((store)=>store.compare);
+
+  let [mobileData, setMobileData] = useState(data);
+  let [results, setResults] = useState(0);
+  let [priceState, setPriceState] = useState([false,false,false,false])
+  console.log(priceState);
 
   const Navbar = styled.div`
     background-color: white;
@@ -84,15 +89,9 @@ export const MobileList = () => {
   `;
 
   useEffect(() => {
-    getData();
+    setMobileData(data);
+    setResults(data.length);
   }, []);
-
-  const getData = () => {
-    axios.get("http://localhost:3001/mobiles").then(({ data }) => {
-        setMobileData(data);
-        setResults(data.length);
-    });
-  };
 
   //price sort
   const pricesort = (x)=>{
@@ -107,25 +106,115 @@ export const MobileList = () => {
   //title sort
   const titleSort = (x)=>{
     if(x === 1){
-      setMobileData(mobileData.slice(0,4));
+        setPriceState([...priceState,!priceState[0]]);
+      setMobileData(data.slice(0,4));
+      setResults(data.slice(0,4).length);
     }
     else if(x === 2){
-      setMobileData(mobileData.slice(4,7));
+        setPriceState([...priceState,!priceState[1]]);
+      setMobileData(data.slice(4,7));
+      setResults(data.slice(4,7).length);
     }
     else if(x === 3){
-        setMobileData(mobileData.slice(7,9));
+        setPriceState([...priceState,!priceState[2]]);
+        setMobileData(data.slice(7,9));
+        setResults(data.slice(7,9).length);
     }
     else{
-        setMobileData(mobileData.slice(9,13));
+        setPriceState([...priceState,!priceState[3]]);
+        setMobileData(data.slice(9,13));
+        setResults(data.slice(9,13).length);
     }
 }
+
+//priceRangeSort
+const priceRangeSort = (x)=>{
+    if(x === 1){
+        setMobileData(data.filter((a)=>a.price[0] <= 10000));
+        setResults(data.filter((a)=>a.price[0] <= 10000).length);
+      }
+      else if(x === 2){
+        setMobileData(data.filter((a)=>a.price[0] > 10000 && a.price[0] <= 20000));
+        setResults(data.filter((a)=>a.price[0] > 10000 && a.price[0] <= 20000).length);
+      }
+      else if(x === 3){
+        setMobileData(data.filter((a)=>a.price[0] > 20000 && a.price[0] <= 30000));
+        setResults(data.filter((a)=>a.price[0] > 20000 && a.price[0] <= 30000).length);
+      }
+      else if(x === 4){
+        setMobileData(data.filter((a)=>a.price[0] > 30000 && a.price[0] <= 40000));
+        setResults(data.filter((a)=>a.price[0] > 30000 && a.price[0] <= 40000).length);
+      }
+      else if(x === 5){
+        setMobileData(data.filter((a)=>a.price[0] > 40000 && a.price[0] <= 50000));
+        setResults(data.filter((a)=>a.price[0] > 40000 && a.price[0] <= 50000).length);
+      }
+      else{
+        setMobileData(data.filter((a)=>a.price[0] > 50000));
+        setResults(data.filter((a)=>a.price[0] > 50000).length);
+      }
+}
   
+
+//memorySizeSort
+const memorySizeSort = (x)=>{
+    if(x === 1){
+        setMobileData(data.filter((a)=>a.description.Storage[0] == "32GB" || a.description.Storage[1] == "32GB"));
+        setResults(data.filter((a)=>a.description.Storage[0] == "32GB" || a.description.Storage[1] == "32GB").length);
+      }
+      else if(x === 2){
+        setMobileData(data.filter((a)=>a.description.Storage[0] == "64GB" || a.description.Storage[1] == "64GB"));
+        setResults(data.filter((a)=>a.description.Storage[0] == "64GB" || a.description.Storage[1] == "64GB").length);
+      }
+      else if(x === 3){
+        setMobileData(data.filter((a)=>a.description.Storage[0] == "128GB" || a.description.Storage[1] == "128GB"));
+        setResults(data.filter((a)=>a.description.Storage[0] == "128GB" || a.description.Storage[1] == "128GB").length);
+      }
+      else if(x === 4){
+        setMobileData(data.filter((a)=>a.description.Storage[0] == "256GB" || a.description.Storage[1] == "256GB"));
+        setResults(data.filter((a)=>a.description.Storage[0] == "256GB" || a.description.Storage[1] == "256GB").length);
+      }
+      else if(x === 5){
+        setMobileData(data.filter((a)=>a.description.Storage[0] == "512GB" || a.description.Storage[1] == "512GB"));
+        setResults(data.filter((a)=>a.description.Storage[0] == "512GB" || a.description.Storage[1] == "512GB").length);
+      }
+      else{
+        setMobileData(data.filter((a)=>a.description.Storage[0] == "1TB" || a.description.Storage[1] == "1TB"));
+        setResults(data.filter((a)=>a.description.Storage[0] == "1TB" || a.description.Storage[1] == "1TB").length);
+      }
+}
+
+//cameraResolutionSort
+const cameraResSort = (x)=>{
+    if(x === 1){
+        setMobileData(data.filter((a)=>a.description.Camera[0] == "8MP Wide"));
+        setResults(data.filter((a)=>a.description.Camera[0] == "8MP Wide").length);
+    }
+    else if(x === 2){
+        setMobileData(data.filter((a)=>a.description.Camera[0] == "10MP Wide"));
+        setResults(data.filter((a)=>a.description.Camera[0] == "10MP Wide").length);
+    }
+    else{
+        setMobileData(data.filter((a)=>a.description.Camera[0] == "20MP Wide"));
+        setResults(data.filter((a)=>a.description.Camera[0] == "20MP Wide").length);
+    }
+}
+
+//Availability
+const availableToOrder = ()=>{
+    setMobileData(data);
+    setResults(data.length);
+}
+
   return (
     <div>
       <Navbar>
         <Link to={"/"}><FunnelFill size={20} color="black"/>Filters</Link>
         <Link to={"/"}>{results} Results</Link>
-        <Link to={"/"}>Reset Filters</Link>
+        <p onClick={()=>{setMobileData(data)
+            setResults(data.length)
+            setPriceState([false,false,false,false])
+            }}>Reset Filters</p>
         <p onClick={()=>{pricesort(1)}}>Price : High to Low</p>
         <p onClick={()=>{pricesort(-1)}}>Price : Low to High</p>
         </Navbar>
@@ -133,80 +222,84 @@ export const MobileList = () => {
         <div className="displayFilters">
             <div className="productName">
                 <p>Class</p>
-                <input type="checkbox" name="productName" value={"1"} onClick={()=>titleSort(1)}/>
-                <label htmlFor="">Galaxy Z</label>
+                <input type="checkbox" checked={priceState[0]} onChange={()=>titleSort(1)}/>
+                <label>Galaxy Z</label>
                 <br /><br />
-                <input type="checkbox" name="productName" value={"1"} onClick={()=>titleSort(2)}/>
-                <label htmlFor="">Galaxy S</label>
+                <input type="checkbox" checked={priceState[1]} onChange={()=>titleSort(2)}/>
+                <label>Galaxy S</label>
                 <br /><br />
-                <input type="checkbox" name="productName" value={"1"} onClick={()=>titleSort(3)}/>
-                <label htmlFor="">Galaxy Note</label>
+                <input type="checkbox" checked={priceState[2]} onChange={()=>titleSort(3)}/>
+                <label>Galaxy Note</label>
                 <br /><br />
-                <input type="checkbox" name="productName" value={"1"} onClick={()=>titleSort(4)}/>
-                <label htmlFor="">Galaxy A</label>
+                <input type="checkbox" checked={priceState[3]} onChange={()=>titleSort(4)}/>
+                <label>Galaxy A</label>
             </div>
             <div className="productPrice productName">
                 <p>Price</p>
-                <input type="checkbox" name="productPrice" value={"1"}/>
+                <input type="checkbox" name="productPrice" onChange={()=>priceRangeSort(1)}/>
                 <label htmlFor="">Up to ₹10000</label>
                 <br /><br />
-                <input type="checkbox" name="productPrice" value={"1"}/>
+                <input type="checkbox" name="productPrice" onChange={()=>priceRangeSort(2)}/>
                 <label htmlFor="">₹10000 ~ ₹20000</label>
                 <br /><br />
-                <input type="checkbox" name="productPrice" value={"1"}/>
+                <input type="checkbox" name="productPrice" onChange={()=>priceRangeSort(3)}/>
                 <label htmlFor="">₹20000 ~ ₹30000</label>
                 <br /><br />
-                <input type="checkbox" name="productPrice" value={"1"}/>
+                <input type="checkbox" name="productPrice" onChange={()=>priceRangeSort(4)}/>
                 <label htmlFor="">₹30000 ~ ₹40000</label>
                 <br /><br />
-                <input type="checkbox" name="productPrice" value={"1"}/>
+                <input type="checkbox" name="productPrice" onChange={()=>priceRangeSort(5)}/>
                 <label htmlFor="">₹40000 ~ ₹50000</label>
                 <br /><br />
-                <input type="checkbox" name="productPrice" value={"1"}/>
+                <input type="checkbox" name="productPrice" onChange={()=>priceRangeSort(6)}/>
                 <label htmlFor="">Above ₹50000</label>
             </div>
             <div className="productMemory productName">
                 <p>Memory</p>
-                <input type="checkbox" name="productMemory" value={"1"}/>
+                <input type="checkbox" name="productMemory" onChange={()=>memorySizeSort(1)}/>
                 <label htmlFor="">Up to 32GB</label>
                 <br /><br />
-                <input type="checkbox" name="productMemory" value={"1"}/>
+                <input type="checkbox" name="productMemory" onChange={()=>memorySizeSort(2)}/>
                 <label htmlFor="">64GB</label>
                 <br /><br />
-                <input type="checkbox" name="productMemory" value={"1"}/>
+                <input type="checkbox" name="productMemory" onChange={()=>memorySizeSort(3)}/>
                 <label htmlFor="">128GB</label>
                 <br /><br />
-                <input type="checkbox" name="productMemory" value={"1"}/>
+                <input type="checkbox" name="productMemory" onChange={()=>memorySizeSort(4)}/>
                 <label htmlFor="">256GB</label>
                 <br /><br />
-                <input type="checkbox" name="productMemory" value={"1"}/>
+                <input type="checkbox" name="productMemory" onChange={()=>memorySizeSort(5)}/>
                 <label htmlFor="">512GB</label>
                 <br /><br />
-                <input type="checkbox" name="productMemory" value={"1"}/>
+                <input type="checkbox" name="productMemory" onChange={()=>memorySizeSort(6)}/>
                 <label htmlFor="">1TB</label>
             </div>
             <div className="productCamera productName">
                 <p>Camera</p>
-                <input type="checkbox" name="productCamera" value={"1"}/>
-                <label htmlFor="">~4.9MP</label>
+                <input type="checkbox" name="productCamera" onChange={()=>cameraResSort(1)}/>
+                <label htmlFor="">~8MP</label>
                 <br /><br />
-                <input type="checkbox" name="productCamera" value={"1"}/>
+                <input type="checkbox" name="productCamera" onChange={()=>cameraResSort(2)}/>
                 <label htmlFor="">9~12.9MP</label>
                 <br /><br />
-                <input type="checkbox" name="productCamera" value={"1"}/>
-                <label htmlFor="">24MP~</label>
+                <input type="checkbox" name="productCamera" onChange={()=>cameraResSort(3)}/>
+                <label htmlFor="">20MP~</label>
             </div>
             <div className="productAvailable productName">
                 <p>Availability</p>
-                <input type="checkbox" name="productAvailable" value={"1"}/>
+                <input type="checkbox" name="productAvailable" onChange={()=>availableToOrder()}/>
                 <label htmlFor="">Available to order</label>
             </div>
         </div>
-        <div className="displayProduct">
+        {results === 0 ? <div className="displayProduct" style={{display:"block"}}>
+            <EmojiFrown size={50} color="#8f8f8f"/>
+            <p style={{fontFamily:"samsung700", fontSize:"23px", color:"#8f8f8f"}}>Sorry, no results were found.</p>
+        </div>: <div className="displayProduct">
             {mobileData && mobileData.map((el)=>(
                 <LineupCard key={el._id} cardWidth={"300px"} productName={el.product_name} cardImage={el.cardImage} newBadge={el.new} colors={el.color} colorImage={el.colorImage1} price={el.price} discount={el.discount} storage={el.description.Storage}/>
             ))}
-        </div>
+        </div>}
+        
       </Main>
     </div>
   );

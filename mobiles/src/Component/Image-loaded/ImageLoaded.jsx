@@ -30,7 +30,7 @@ export const ImageLoaded = ({image,title,description,top,color,margin}) => {
       opacity: 75%;
     }
     & a{
-      color:white;
+      color:${color === "black" ? "white" : "black"};
       text-decoration:none;
     }
   `;
