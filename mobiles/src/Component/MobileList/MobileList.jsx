@@ -1,10 +1,13 @@
 import styled from "styled-components";
 import { useEffect, useState } from "react";
-import { LineupCard } from "../Lineup-card/LineupCard";
+import { LineupCard } from "../Mobile-Overview/Lineup-card/LineupCard";
 import { FunnelFill } from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import {EmojiFrown} from "react-bootstrap-icons";
+import { NavBar } from "../HomePage/LandingPage/NavBar/NavBar";
+import { Footer } from "../HomePage/LandingPage/Footer/Footer";
+import { Navbar } from "../Mobile-Overview/Navbar/Navbar";
 
 export const MobileList = () => {
 
@@ -15,7 +18,7 @@ export const MobileList = () => {
   let [priceState, setPriceState] = useState([false,false,false,false])
   console.log(priceState);
 
-  const Navbar = styled.div`
+  const Navbarr = styled.div`
     background-color: white;
     height: 53px;
     font-family: samsung700;
@@ -208,7 +211,9 @@ const availableToOrder = ()=>{
 
   return (
     <div>
-      <Navbar>
+      <NavBar/>
+      <Navbar/>
+      <Navbarr>
         <Link to={"/"}><FunnelFill size={20} color="black"/>Filters</Link>
         <Link to={"/"}>{results} Results</Link>
         <p onClick={()=>{setMobileData(data)
@@ -217,7 +222,7 @@ const availableToOrder = ()=>{
             }}>Reset Filters</p>
         <p onClick={()=>{pricesort(1)}}>Price : High to Low</p>
         <p onClick={()=>{pricesort(-1)}}>Price : Low to High</p>
-        </Navbar>
+        </Navbarr>
       <Main>
         <div className="displayFilters">
             <div className="productName">
@@ -301,6 +306,7 @@ const availableToOrder = ()=>{
         </div>}
         
       </Main>
+      <Footer/>
     </div>
   );
 };

@@ -1,20 +1,24 @@
-import { LineupCard } from "../Lineup-card/LineupCard";
+import { LineupCard } from "../../Mobile-Overview/Lineup-card/LineupCard";
 import styled from "styled-components";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useDispatch} from "react-redux";
+import { compareData } from "../../../Redux/action";
 import { Link } from "react-router-dom";
 
-export const GalaxyS = () => {
+export const GalaxyZ = () => {
 
-  const [galaxyS, setGalaxyS] = useState(null);
+  const [galaxyZ, setGalaxyZ] = useState(null);
+  
+  const dispatch = useDispatch();
 
   const Main = styled.div`
     height: 800px;
     background-color: #f7f7f7;
     & .flexDiv {
       display: flex;
-      padding-left: 20%;
-      padding-right: 20%;
+      padding-left: 10%;
+      padding-right: 10%;
       justify-content: space-between;
     }
     & .seeAll {
@@ -30,7 +34,7 @@ export const GalaxyS = () => {
       margin: auto;
     }
     & .seeAll:hover {
-      background-color: #e8e8e8;
+        background-color: #e8e8e8;
     }
     & .seeAll>a{
       color: black;
@@ -38,17 +42,19 @@ export const GalaxyS = () => {
     }
   `;
 
-  useEffect(() => {
+  useEffect(()=>{
     getData();
-  }, []);
+  },[])
 
-  const getData = () => {
-    axios.get("http://localhost:3001/mobiles").then(({ data }) => {
-      setGalaxyS(data.slice(4, 7));
-    });
-  };
+  const getData = ()=>{
+    axios.get("http://localhost:3001/mobiles").then(({data})=>{
+      setGalaxyZ(data.slice(0,4));
+      dispatch(compareData(data));
+    })
+  }
 
-  if (galaxyS === null) {
+
+  if(galaxyZ === null){
     return null;
   }
 
@@ -57,7 +63,7 @@ export const GalaxyS = () => {
       <br />
       <br />
       <div className="flexDiv">
-        {galaxyS.map((el)=>(
+        {galaxyZ.map((el)=>(
           <LineupCard key={el._id} id={el._id} productName={el.product_name} cardImage={el.cardImage} newBadge={el.new} colors={el.color} colorImage={el.colorImage1} price={el.price} discount={el.discount} storage={el.description.Storage}/>
         ))}
       </div>

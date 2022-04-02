@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export const ImageLoaded = ({image,title,description,top,color,margin}) => {
   const Main = styled.div`
-
+    width:50%;
     font-family: samsung400;
     color: ${color};
     margin-left: ${margin};

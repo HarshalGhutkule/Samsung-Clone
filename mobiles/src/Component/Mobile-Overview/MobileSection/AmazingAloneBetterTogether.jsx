@@ -1,4 +1,4 @@
-import { LineupCard } from "../Lineup-card/LineupCard";
+import { LineupCard } from "../../Mobile-Overview/Lineup-card/LineupCard";
 import styled from "styled-components";
 import axios from "axios";
 import { useEffect, useState } from "react";

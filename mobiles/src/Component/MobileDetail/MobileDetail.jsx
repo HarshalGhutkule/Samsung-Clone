@@ -4,6 +4,8 @@ import { ArrowLeftRight,CircleFill,EnvelopeOpenHeart,Archive, Heart, Share } fro
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
+import { NavBar } from "../HomePage/LandingPage/NavBar/NavBar";
+import { Footer } from "../HomePage/LandingPage/Footer/Footer";
 
 export const MobileDetail=()=>{
 
@@ -189,9 +191,10 @@ const Price = styled.div`
     
 
     return(<>
+        <NavBar/>
         <div>
         {/**Sticky Navbar 👇*/}
-        <Div height={'88px'} width={'100%'} style={{display: "flex",position: 'sticky',backgroundColor:"white", top: '53px',zIndex:"7",width: '100%', borderBottom:"1px solid #eaeaea"}}>
+        <Div height={'88px'} width={'100%'} style={{display: "flex",position: 'sticky',backgroundColor:"white", top: '0px',zIndex:"7",width: '100%', borderBottom:"1px solid #eaeaea"}}>
             <NewArrival>
                 <p>New Arrival</p>
                 <p>{mobileData.product_name}</p>
@@ -602,5 +605,6 @@ Also, don't worry! Pre-order gifts are still valid to all customers who placed t
             {mobileData.boxImage !== undefined ? <img src={mobileData.boxImage} alt="" /> : <></>}
         </Div>
         </div>
+        <Footer/>
     </>)
 }

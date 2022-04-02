@@ -1,16 +1,11 @@
-import { LineupCard } from "../Lineup-card/LineupCard";
+import { LineupCard } from "../../Mobile-Overview/Lineup-card/LineupCard";
 import styled from "styled-components";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useDispatch} from "react-redux";
-import { compareData } from "../../Redux/action";
 import { Link } from "react-router-dom";
 
-export const GalaxyZ = () => {
-
-  const [galaxyZ, setGalaxyZ] = useState(null);
-  
-  const dispatch = useDispatch();
+export const GalaxyASeries = () => {
+  const [galaxyA, setGalaxyA] = useState(null);
 
   const Main = styled.div`
     height: 800px;
@@ -34,7 +29,7 @@ export const GalaxyZ = () => {
       margin: auto;
     }
     & .seeAll:hover {
-        background-color: #e8e8e8;
+      background-color: #e8e8e8;
     }
     & .seeAll>a{
       color: black;
@@ -42,19 +37,17 @@ export const GalaxyZ = () => {
     }
   `;
 
-  useEffect(()=>{
+  useEffect(() => {
     getData();
-  },[])
+  }, []);
 
-  const getData = ()=>{
-    axios.get("http://localhost:3001/mobiles").then(({data})=>{
-      setGalaxyZ(data.slice(0,4));
-      dispatch(compareData(data));
-    })
-  }
+  const getData = () => {
+    axios.get("http://localhost:3001/mobiles").then(({ data }) => {
+      setGalaxyA(data.slice(9, 13));
+    });
+  };
 
-
-  if(galaxyZ === null){
+  if (galaxyA === null) {
     return null;
   }
 
@@ -63,7 +56,7 @@ export const GalaxyZ = () => {
       <br />
       <br />
       <div className="flexDiv">
-        {galaxyZ.map((el)=>(
+        {galaxyA.map((el)=>(
           <LineupCard key={el._id} id={el._id} productName={el.product_name} cardImage={el.cardImage} newBadge={el.new} colors={el.color} colorImage={el.colorImage1} price={el.price} discount={el.discount} storage={el.description.Storage}/>
         ))}
       </div>

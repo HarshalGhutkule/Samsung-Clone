@@ -1,19 +1,20 @@
-import { LineupCard } from "../Lineup-card/LineupCard";
+import { LineupCard } from "../../Mobile-Overview/Lineup-card/LineupCard";
 import styled from "styled-components";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-export const GalaxyNote = () => {
-  const [galaxyNote, setGalaxyNote] = useState(null);
+export const GalaxyS = () => {
+
+  const [galaxyS, setGalaxyS] = useState(null);
 
   const Main = styled.div`
     height: 800px;
     background-color: #f7f7f7;
     & .flexDiv {
       display: flex;
-      padding-left: 30%;
-      padding-right: 30%;
+      padding-left: 20%;
+      padding-right: 20%;
       justify-content: space-between;
     }
     & .seeAll {
@@ -43,11 +44,11 @@ export const GalaxyNote = () => {
 
   const getData = () => {
     axios.get("http://localhost:3001/mobiles").then(({ data }) => {
-      setGalaxyNote(data.slice(7, 9));
+      setGalaxyS(data.slice(4, 7));
     });
   };
 
-  if (galaxyNote === null) {
+  if (galaxyS === null) {
     return null;
   }
 
@@ -56,7 +57,7 @@ export const GalaxyNote = () => {
       <br />
       <br />
       <div className="flexDiv">
-        {galaxyNote.map((el)=>(
+        {galaxyS.map((el)=>(
           <LineupCard key={el._id} id={el._id} productName={el.product_name} cardImage={el.cardImage} newBadge={el.new} colors={el.color} colorImage={el.colorImage1} price={el.price} discount={el.discount} storage={el.description.Storage}/>
         ))}
       </div>
