@@ -19,44 +19,25 @@ export const MobileCurousel = () => {
     }
   `;
 
+  let array = ["https://images.samsung.com/in/smartphones/galaxy-z-fold3-5g/buy/zfold3_carousel_productimage_phantomblack_pc.jpg?imwidth=1366",
+  "https://images.samsung.com/in/smartphones/galaxy-z-fold3-5g/buy/zfold3_carousel_multitasking_kv_pc.jpg?imwidth=1366",
+  "https://images.samsung.com/in/smartphones/galaxy-z-fold3-5g/buy/zfold3_carousel_waterproof_kv_pc.jpg?imwidth=1366",
+"https://images.samsung.com/in/smartphones/galaxy-z-fold3-5g/buy/zfold3_carousel_productimage_phantomblack_pc.jpg?imwidth=1366",
+"https://images.samsung.com/in/smartphones/galaxy-z-fold3-5g/buy/zfold3_carousel_productimage_phantomgreen_pc.jpg?imwidth=1366"]
+
   return (
     <div>
       <SubMain>
-        <Carousel.Item interval={2000}>
-        <img
-            className="d-block w-100"
-            src="https://images.samsung.com/in/smartphones/galaxy-z-fold3-5g/buy/zfold3_carousel_productimage_phantomblack_pc.jpg?imwidth=1366"
-            alt="Second slide"
-          />
-        </Carousel.Item>
-        <Carousel.Item interval={2000}>
+        {array.map((el)=>
+          <Carousel.Item interval={2000}>
           <img
-            className="d-block w-100"
-            src="https://images.samsung.com/in/smartphones/galaxy-z-fold3-5g/buy/zfold3_carousel_multitasking_kv_pc.jpg?imwidth=1366"
-            alt="Second slide"
-          />
-        </Carousel.Item>
-        <Carousel.Item>
-          <img
-            className="d-block w-100"
-            src="https://images.samsung.com/in/smartphones/galaxy-z-fold3-5g/buy/zfold3_carousel_waterproof_kv_pc.jpg?imwidth=1366"
-            alt="Third slide"
-          />
-        </Carousel.Item>
-        <Carousel.Item>
-          <img
-            className="d-block w-100"
-            src="https://images.samsung.com/in/smartphones/galaxy-z-fold3-5g/buy/zfold3_carousel_productimage_phantomblack_pc.jpg?imwidth=1366"
-            alt="Third slide"
-          />
-        </Carousel.Item>
-        <Carousel.Item>
-          <img
-            className="d-block w-100"
-            src="https://images.samsung.com/in/smartphones/galaxy-z-fold3-5g/buy/zfold3_carousel_productimage_phantomgreen_pc.jpg?imwidth=1366"
-            alt="Third slide"
-          />
-        </Carousel.Item>
+              className="d-block w-100"
+              src={el}
+              alt="Second slide"
+            />
+          </Carousel.Item>
+        )}
+        
       </SubMain>
     </div>
   );
