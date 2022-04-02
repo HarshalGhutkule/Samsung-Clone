@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import { Heart, CircleFill,HeartFill } from "react-bootstrap-icons";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
-export const LineupCard = ({cardWidth,productName,cardImage,colorImage,newBadge,price,discount,colors,storage}) => {
+export const LineupCard = ({id,cardWidth,productName,cardImage,colorImage,newBadge,price,discount,colors,storage}) => {
   
   const [imageUrl, setImageUrl] = useState(cardImage[0]);
 
@@ -74,6 +75,10 @@ export const LineupCard = ({cardWidth,productName,cardImage,colorImage,newBadge,
     }
     & .buyNow:hover {
       opacity: 75%;
+    }
+    & .buyNow > a{
+      color:white;
+      text-decoration:none;
     }
   `;
 
@@ -166,7 +171,7 @@ export const LineupCard = ({cardWidth,productName,cardImage,colorImage,newBadge,
         <p>
           <span>₹ {(mobilePrice+discount).toFixed(2)}</span> <span>Save ₹{discount && discount.toFixed(2)}</span>
         </p>
-        <button className="buyNow">Buy now</button>
+        <button className="buyNow"><Link to={`/mobilesDetail/${id}`}>Buy now</Link></button>
       </div>
     </Main>
   );

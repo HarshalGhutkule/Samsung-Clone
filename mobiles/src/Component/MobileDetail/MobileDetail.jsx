@@ -1,17 +1,28 @@
 import styled from "styled-components"
 import { MobileCurousel } from "./MobileCarousel"
-import { ArrowLeftRight,CircleFill,EnvelopeOpenHeart,Archive, Wallet } from "react-bootstrap-icons";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { ArrowLeftRight,CircleFill,EnvelopeOpenHeart,Archive, Heart, Share } from "react-bootstrap-icons";
+import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import axios from "axios";
 
 export const MobileDetail=()=>{
 
-    let colorImage = ["https://images.samsung.com/in/smartphones/galaxy-s22-ultra/buy/S22Ultra_ColorSelection_PhantomBlack_MO.jpg?imwidth=480",
-    "https://images.samsung.com/in/smartphones/galaxy-s22-ultra/buy/S22Ultra_ColorSelection_Burgundy_MO.jpg?imwidth=480",
-    "https://images.samsung.com/in/smartphones/galaxy-s22-ultra/buy/S22Ultra_ColorSelection_Burgundy_MO.jpg?imwidth=480"];
-    let colors = ["black","white","pink"];
+    const [mobileData, setMobileData] = useState(null);
 
-    const [imageUrl, setImageUrl] = useState(colorImage[0]);
+    const {id} = useParams();
+
+    useEffect(()=>{
+        getData();
+    },[])
+
+    const getData = ()=>{
+        axios.get(`http://localhost:3001/mobiles/${id}`).then(({data})=>{
+            console.log("mobileData",data);
+            setMobileData(data);
+        })
+    }
+
+    const [imageUrl, setImageUrl] = useState(null);
 
     const Div = styled.div`
     height: ${({height})=>height};
@@ -164,16 +175,29 @@ const Price = styled.div`
         setImageUrl(image);
     };
 
+    if(mobileData === null){
+        return null;
+    }
+     //calculate emi1
+    const emi = Math.floor(mobileData && mobileData.price[0]*(14.99/365)*((1+(14.99/365))**24)/((1+(14.99/365))**24)-1);
+
+    //calculate emi2
+    let emi2;
+    if(mobileData.price[1] !== undefined){
+        emi2 = Math.floor(mobileData && mobileData.price[1]*(14.99/365)*((1+(14.99/365))**24)/((1+(14.99/365))**24)-1);
+    }
+    
+
     return(<>
         <div>
         {/**Sticky Navbar 👇*/}
         <Div height={'88px'} width={'100%'} style={{display: "flex",position: 'sticky',backgroundColor:"white", top: '53px',zIndex:"7",width: '100%', borderBottom:"1px solid #eaeaea"}}>
             <NewArrival>
                 <p>New Arrival</p>
-                <p>Galaxy S22 Ultra</p>
+                <p>{mobileData.product_name}</p>
             </NewArrival>
             <Price>
-                <p>Price ₹134999.00 From <span className="amountColor">₹6999.92</span>/month at 0% interest for 12 months or <span className="amountColor">₹83999.00</span> with exchange*</p>
+                <p>Price ₹{mobileData && mobileData.price[0].toFixed(2)} From <span className="amountColor">₹{emi.toFixed(2)}</span>/month at 0% interest for 24 months or <span className="amountColor">₹{mobileData.exchange.toFixed(2)}</span> with exchange*</p>
             </Price>
             <ButtonDiv>
                 <p></p>
@@ -182,7 +206,7 @@ const Price = styled.div`
         </Div>
         {/**Curousel */}
         <Div width={'100%'}>
-            <MobileCurousel/>
+            <MobileCurousel detailImage={mobileData.detailImage}/>
         </Div>
         
         {/** Exchange */}
@@ -199,11 +223,11 @@ const Price = styled.div`
 
         
         <Div height={'100%'} width={'80%'} marginTop={'2px'}>
-            <p className="getExchange">Get up to ₹51000.00 off on exchange of your current phone</p>
+            <p className="getExchange">Get up to ₹{mobileData.exchange.toFixed(2)} off on exchange of your current phone</p>
         <Div height={'100%'} display={"flex"}>
             <Div cur={"pointer"} height={'30%'} width={'30%'} margin={"1%"} br={"5px"} b={'1px solid #eaeaea'} marginTop={'2px'} display={"flex"} style={{justifyContent:"space-around"}}>
                 <p className="yesPlease">Yes, please</p>
-                <p>Save up to ₹51000.00</p>
+                <p>Save up to ₹{mobileData.exchange.toFixed(2)}</p>
             </Div>
             <Div cur={"pointer"} height={'30%'} width={'30%'} margin={"1%"} br={"5px"} b={'1px solid #eaeaea'} marginTop={'2px'}>
                 <p className="noPlease">No, thanks</p>
@@ -227,8 +251,8 @@ const Price = styled.div`
         <Div height={'100%'} width={'80%'} marginTop={'2px'} >
 
         <Div cur={"pointer"} height={'40%'} width={'30%'} ph={"1%"} margin={"1%"} br={"5px"} b={'1px solid #eaeaea'} marginTop={'2px'}>
-                <p className="yesPlease">Galaxy S22 Ultra</p>
-                <p className="devicePrice">From ₹11249.92/month for 12 months or ₹134999.00</p>
+                <p className="yesPlease">{mobileData.product_name}</p>
+                <p className="devicePrice">From ₹{emi.toFixed(2)}/month for 24 months or ₹{mobileData.price[0].toFixed(2)}</p>
         </Div>
 
         <p className="yesPlease" style={{marginLeft:"2%"}}>Late delivery notice</p>
@@ -253,13 +277,16 @@ Also, don't worry! Pre-order gifts are still valid to all customers who placed t
         <Div height={'100%'} width={'80%'} marginTop={'2px'} display={'flex'}>
 
         <Div cur={"pointer"} height={'50%'} width={'30%'} ph={"1%"} margin={"1%"} br={"5px"} b={'1px solid #eaeaea'} marginTop={'2px'}>
-                <p className="yesPlease">256GB | 12GB</p>
-                <p className="devicePrice">From ₹11249.92/month for 12 months or ₹134999.00</p>
+                <p className="yesPlease">{mobileData.description.Storage[0]} | {mobileData.description.RAMSizeGB}GB</p>
+                <p className="devicePrice">From ₹{emi.toFixed(2)}/month for 24 months or ₹{mobileData.price[0].toFixed(2)}</p>
         </Div>
+        {mobileData.description.Storage[1] !== undefined ? 
         <Div cur={"pointer"} height={'50%'} width={'30%'} ph={"1%"} margin={"1%"} br={"5px"} b={'1px solid #eaeaea'} marginTop={'2px'}>
-                <p className="yesPlease">512GB | 12GB</p>
-                <p className="devicePrice">From ₹11249.92/month for 12 months or ₹134999.00</p>
-        </Div>
+            <p className="yesPlease">{mobileData.description.Storage[1]} | {mobileData.description.RAMSizeGB}GB</p>
+            <p className="devicePrice">From ₹{emi2.toFixed(2)}/month for 24 months or ₹{mobileData.price[1].toFixed(2)}</p>
+        </Div> : <></>
+        }
+        
         
         </Div>
         
@@ -269,6 +296,7 @@ Also, don't worry! Pre-order gifts are still valid to all customers who placed t
         
         
         {/** Color */}
+        {mobileData.colorImage2[1] !== undefined ? 
         <Div height={'500px'} width={'80%'} marginTop={'2%'} marginLeft={'10%'} display={'flex'} bb={"1px solid #eaeaea"}>
         
         {/** Div 1*/}
@@ -280,17 +308,17 @@ Also, don't worry! Pre-order gifts are still valid to all customers who placed t
         <Div height={'100%'} width={'80%'}  marginTop={'2px'} display={'flex'}>
 
         <Div height={'445px'} width={'445px'}  marginTop={'2px'} style={{borderRight:"1px solid #eaeaea"}}>
-            <img src={imageUrl} alt="colorImage" height={"430px"}/>
+            <img src={imageUrl === null ? mobileData.colorImage2[0] : imageUrl} alt="colorImage" height={"430px"}/>
         </Div>
         
         <div className="radiobtnDiv">
-          <CircleFill className="radioColor" color={colors[0]} onClick={()=>{handleChange(colorImage[0])}} style={{border:"1px solid black",borderRadius:"50%"}}/> {colors[0]}
-          <CircleFill className="radioColor" color={colors[1] === undefined ? "white" : colors[1]} onClick={()=>{if(colorImage[1] !== undefined) handleChange(colorImage[1])}} style={{border:`${colors[1] === undefined ? "1px solid white":"1px solid black"}`,borderRadius:"50%"}}/>{colors[1]}
-          <CircleFill className="radioColor" color={colors[2] === undefined ? "white" : colors[2]} onClick={()=>{if(colorImage[2] !== undefined) handleChange(colorImage[2])}} style={{border:`${colors[2] === undefined ? "1px solid white":"1px solid black"}`,borderRadius:"50%"}}/>{colors[2]}
+          <CircleFill className="radioColor" color={mobileData.color[0]} onClick={()=>{handleChange(mobileData.colorImage2[0])}} style={{border:"1px solid black",borderRadius:"50%"}}/> {mobileData.color[0]}
+          <CircleFill className="radioColor" color={mobileData.color[1] === undefined ? "white" : mobileData.color[1]} onClick={()=>{if(mobileData.colorImage2[1] !== undefined) handleChange(mobileData.colorImage2[1])}} style={{border:`${mobileData.color[1] === undefined ? "1px solid white":"1px solid black"}`,borderRadius:"50%"}}/>{mobileData.color[1]}
+          <CircleFill className="radioColor" color={mobileData.color[2] === undefined ? "white" : mobileData.color[2]} onClick={()=>{if(mobileData.colorImage2[2] !== undefined) handleChange(mobileData.colorImage2[2])}} style={{border:`${mobileData.color[2] === undefined ? "1px solid white":"1px solid black"}`,borderRadius:"50%"}}/>{mobileData.color[2]}
         </div>
         </Div>
         
-        </Div>
+        </Div> : <></>}
         
         {/** Samsung Care+ */}
         <Div height={"240px"} width={'80%'} marginTop={'2%'} marginLeft={'10%'} display={'flex'} bb={"1px solid #eaeaea"}>
@@ -337,7 +365,7 @@ Also, don't worry! Pre-order gifts are still valid to all customers who placed t
  
         {/** Offers & Benefits */}
         
-        <Div height={"945px"} width={'80%'} br={"5px"} bc={'#F7F7F7'} marginTop={'2%'} marginLeft={'10%'} display={'flex'} bb={"1px solid #eaeaea"}>
+        <Div height={"945px"} width={'80%'} br={"10px"} bc={'#F7F7F7'} marginTop={'2%'} marginLeft={'10%'} display={'flex'} bb={"1px solid #eaeaea"}>
         
         {/** Div 1*/}
         <Div height={'100%'} width={'20%'} textAlign={"left"} marginTop={'2px'}> 
@@ -346,22 +374,23 @@ Also, don't worry! Pre-order gifts are still valid to all customers who placed t
         </Div>
 
         {/** Div 2*/}
-        <Div height={'100%'} width={'80%'} b={'1px solid gray'} marginTop={'2px'}>
+        <Div height={'100%'} width={'80%'} marginTop={'2px'}>
 
             {/** Inner div 1 */}
         
-            <Div height={'150px'} width={'100%'} b={'1px solid red'} display={'flex'}  marginTop={'30px'}>
+            <Div height={'150px'} width={'90%'} display={'flex'} br={"10px"} bc={'white'} marginTop={'30px'}>
             {/** Div 1*/}  
             
-            <Div height={'100%'} width={'20%'} b={'1px solid orange'} marginTop={'2px'} ph={"4%"}> 
+            <Div height={'100%'} width={'20%'}> 
 
-                <Wallet size={80}/>
+                <img src="https://www.samsung.com/etc.clientlibs/samsung/clientlibs/consumer/global/clientlib-common/resources/images/promotion_icon/160_03_samsung_financing.png" alt="" />
+
             
             </Div>
 
                 {/** Div 2*/}  
     
-            <Div height={'100%'} width={'80%'} b={'1px solid gray'} marginTop={'2px'} ph={"2%"} textAlign={"left"}>
+            <Div height={'100%'} width={'80%'} marginTop={'2px'} ph={"2%"} textAlign={"left"}>
 
                 <p className="offers">No Cost EMI starts from ₹ 11132.60/ month.</p>
                 <p className="offers">Standard EMI starts from ₹ 6303.21/ month.</p>
@@ -369,69 +398,126 @@ Also, don't worry! Pre-order gifts are still valid to all customers who placed t
             </Div>
             
             </Div>
-        
-        
-        
-        </Div>
-        
-        </Div>
-        
 
-        {/** Samsung.com Advantage */}
-        <Div height={'591px'} width={'1080px'} b={'1px solid red'} marginLeft={'10%'} display={'flex'} bc={'#F7F6F6'} >
-        
-        {/** Div 1*/}
-        <Div height={'100%'} width={'20%'} b={'1px solid orange'} marginTop={'2px'}>Samsung.com Advantage</Div>
-
-        {/** Div 2*/}
-        <Div height={'100%'} width={'80%'} b={'1px solid gray'} marginTop={'2px'}>
-
-            {/** Inner div 1 */}
-        
-            <Div height={'150px'} width={'100%'} b={'1px solid red'} display={'flex'}  marginTop={'30px'}>
+            <Div height={'150px'} width={'90%'} display={'flex'} br={"10px"} bc={'white'} marginTop={'30px'}>
             {/** Div 1*/}  
             
-            <Div height={'100%'} width={'20%'} b={'1px solid orange'} marginTop={'2px'}> </Div>
+            <Div height={'100%'} width={'20%'}> 
+
+                <img src="https://www.samsung.com/etc.clientlibs/samsung/clientlibs/consumer/global/clientlib-common/resources/images/promotion_icon/exchange.svg" alt="" />
+            
+            </Div>
 
                 {/** Div 2*/}  
     
-            <Div height={'100%'} width={'80%'} b={'1px solid gray'} marginTop={'2px'} display={'flex'}>
+            <Div height={'100%'} width={'80%'} marginTop={'2px'} ph={"2%"} textAlign={"left"}>
+            <span
+          class="w3-badge w3-blue"
+          style={{
+            borderRadius: "5px",
+            textAlign: "left",
+            fontFamily: "samsung700",
+            fontSize: "11px"
+          }}
+        >
+          Exchange offer
+        </span><br />
+                <p className="offers">Exchange Bonus</p>
+                <p className="getExchange" style={{padding:"0%"}}>Get up to ₹12000 additional value on exchange for your old phone</p>
+                <Link className="linktag" to={"/learnmore"}>Learn More</Link>
+            </Div>
+            
+            </Div>
 
-            
-            </Div>
-            
-            </Div>
-            
-            {/** Inner div 2*/}
-            <Div height={'150px'} width={'100%'} b={'1px solid red'} display={'flex'} marginTop={'30px'} >
+            <Div height={'150px'} width={'90%'} display={'flex'} br={"10px"} bc={'white'} marginTop={'30px'}>
             {/** Div 1*/}  
             
-            <Div height={'100%'} width={'20%'} b={'1px solid orange'} marginTop={'2px'}> </Div>
+            <Div height={'100%'} width={'20%'}> 
+
+                <img src="https://www.samsung.com/etc.clientlibs/samsung/clientlibs/consumer/global/clientlib-common/resources/images/promotion_icon/offer_discount.svg" alt="" />
+            
+            </Div>
 
                 {/** Div 2*/}  
     
-            <Div height={'100%'} width={'80%'} b={'1px solid gray'} marginTop={'2px'} display={'flex'}>
-
-            
+            <Div height={'100%'} width={'80%'} marginTop={'2px'} ph={"2%"} textAlign={"left"}>
+            <span
+          class="w3-badge w3-blue"
+          style={{
+            borderRadius: "5px",
+            textAlign: "left",
+            fontFamily: "samsung700",
+            fontSize: "11px"
+          }}
+        >
+          Referral Benefit
+        </span><br />
+                <p className="offers">Referral Advantage Program</p>
+                <p className="getExchange" style={{padding:"0%"}}>Save additional 5% using referral code</p>
+                <Link className="linktag" to={"/learnmore"}>Learn More</Link>
             </Div>
             
             </Div>
 
-            {/** Inner div 3 */}
-            <Div height={'150px'} width={'100%'} b={'1px solid red'} display={'flex'}  marginTop={'30px'}>
+            <Div height={'150px'} width={'90%'} display={'flex'} br={"10px"} bc={'white'} marginTop={'30px'}>
             {/** Div 1*/}  
             
-            <Div height={'100%'} width={'20%'} b={'1px solid orange'} marginTop={'2px'}> </Div>
+            <Div height={'100%'} width={'20%'}> 
+
+                <img height={"144px"} src="https://www.samsung.com/etc.clientlibs/samsung/clientlibs/consumer/global/clientlib-common/resources/images/promotion_icon/20K.svg" alt="" />
+            
+            </Div>
 
                 {/** Div 2*/}  
     
-            <Div height={'100%'} width={'80%'} b={'1px solid gray'} marginTop={'2px'} display={'flex'}>
+            <Div height={'100%'} width={'80%'} marginTop={'2px'} ph={"2%"} textAlign={"left"}>
+            <span
+          class="w3-badge w3-blue"
+          style={{
+            borderRadius: "5px",
+            textAlign: "left",
+            fontFamily: "samsung700",
+            fontSize: "11px"
+          }}
+        >
+          20K Advantage
+        </span><br />
+                <p className="offers">20K Advantage Program</p>
+                <p className="getExchange" style={{padding:"0%"}}>Get additional ₹2000 off on Samsung Shop App</p>
+                <Link className="linktag" to={"/learnmore"}>Learn More</Link>
+            </Div>
+            
+            </Div>
 
+            <Div height={'150px'} width={'90%'} display={'flex'} br={"10px"} bc={'white'} marginTop={'30px'}>
+            {/** Div 1*/}  
             
+            <Div height={'100%'} width={'20%'}> 
+
+                <img height={"144px"} src="https://www.samsung.com/etc.clientlibs/samsung/clientlibs/consumer/global/clientlib-common/resources/images/promotion_icon/video.svg" alt="" />
+            
+            </Div>
+
+                {/** Div 2*/}  
+    
+            <Div height={'100%'} width={'80%'} marginTop={'2px'} ph={"2%"} textAlign={"left"}>
+            <span
+          class="w3-badge w3-blue"
+          style={{
+            borderRadius: "5px",
+            textAlign: "left",
+            fontFamily: "samsung700",
+            fontSize: "11px"
+          }}
+        >
+          Live Demo Video
+        </span><br />
+                <p className="offers">Experience the new Galaxy S22</p>
+                <p className="getExchange" style={{padding:"0%"}}>Attend a Live Demo with Samsung Expert</p>
+                <Link className="linktag" to={"/learnmore"}>Learn More</Link>
             </Div>
             
             </Div>
-        
         
         </Div>
         
@@ -439,30 +525,82 @@ Also, don't worry! Pre-order gifts are still valid to all customers who placed t
         
 
         {/** Galaxy Z Flip3 5G And Total*/}
-        <Div height={'400px'} width={'80%'} b={'1px solid red'} marginLeft={'10%'} marginTop = {'70px'} bc={'#F7F6F6'}  >
+        <Div height={'350px'} width={'80%'} br={"10px"} marginLeft={'10%'} marginTop = {'70px'} bc={'#F7F7F7'}  >
         
         {/** Div 1*/}        
-        <Div height={'170px'} width={'100%'} b={'1px solid orange'} display = {'flex'}> 
+        <Div height={'140px'} width={'100%'} bb={"1px solid #eaeaea"} display = {'flex'}> 
         
-        <Div height={'100%'} width={'55%'} b={'1px solid blue'} ></Div>
-        <Div height={'100%'} width={'45%'} b={'1px solid red'} >Galaxy Z Flip3 5G</Div>
+        <Div height={'100%'} width={'55%'} ></Div>
+            
+        <Div cur={"pointer"} height={'100%'} textAlign={"left"} width={'60%'} margin={"1%"} style={{justifyContent:"space-around"}}>
+                <div style={{textAlign:"right"}}> 
+                    <Heart size={20} style={{marginLeft:"2%"}}/>
+                    <Share size={20} style={{marginLeft:"2%"}}/>
+                </div>
+                <Div cur={"pointer"} height={'100%'} textAlign={"left"} width={'100%'} margin={"1%"} marginTop={'2px'} display={"flex"} style={{justifyContent:"space-around"}}>
+                    <div>
+                        <p className="yesPlease" style={{fontSize: "16px"}}>{mobileData.product_name}</p>
+                        <p style={{fontFamily:"samsung400", fontSize: "14px"}}>{mobileData.product_id}</p>
+                        <br />
+                        <p style={{fontFamily:"samsung400", fontSize: "14px"}}>{mobileData.description.Storage[0]} | {mobileData.description.RAMSizeGB}GB Burgundy</p>
+                    </div>
+                    <div>
+                        <p className="yesPlease"></p> <p className="yesPlease"></p> <br /><br /><br />
+                        <p style={{fontFamily:"samsung700", fontSize: "14px"}}>₹{mobileData.price[0].toFixed(2)}</p>
+                    </div>
+                </Div>
+            </Div>
         
         </Div>
 
         {/** Div 2*/}
-        <Div height={'220px'} width={'100%'} b={'1px solid gray'} marginTop={'2px'} display = {'flex'}>
+        <Div height={'220px'} width={'100%'} marginTop={'2px'} display = {'flex'}>
         
-        <Div height={'100%'} width={'55%'} b={'1px solid blue'} ></Div>
-        <Div height={'100%'} width={'45%'} b={'1px solid red'} >Total</Div>
+        <Div height={'100%'} width={'55%'} margin={"auto"} display = {'flex'} style={{paddingTop:"10%", justifyContent:"space-evenly"}}>
+            <div>
+                <img height={"60px"} src="https://www.samsung.com/etc.clientlibs/samsung/clientlibs/consumer/global/clientlib-common/resources/images/pd-ico-benefit-pay.svg" alt="" />
+                <p style={{fontFamily:"samsung700", fontSize: "14px"}}>Financing</p>
+            </div>
+            <div>
+                <img height={"60px"} src="https://www.samsung.com/etc.clientlibs/samsung/clientlibs/consumer/global/clientlib-common/resources/images/9.exchange_160x160.png" alt="" />
+                <p style={{fontFamily:"samsung700", fontSize: "14px"}}>Exchange</p>
+            </div>
+            <div>
+                <img height={"60px"} src="https://www.samsung.com/etc.clientlibs/samsung/clientlibs/consumer/global/clientlib-common/resources/images/pd-ico-benefit-care.svg" alt="" />
+                <p style={{fontFamily:"samsung700", fontSize: "14px"}}>Samsung Care+</p>
+            </div>
+            
+        </Div>
         
-        
-        
+        <Div cur={"pointer"} height={'100%'} width={'50%'} margin={"1%"} style={{justifyContent:"space-around"}}>
+                <Div cur={"pointer"} height={'60%'} textAlign={"left"} width={'100%'} margin={"1%"} marginTop={'2px'} display={"flex"} style={{justifyContent:"space-around"}}>
+                    <div>
+                        <p className="yesPlease" style={{fontSize: "22px"}}>Total</p>
+                    </div>
+                    <div>
+                        <p className="yesPlease" style={{fontFamily:"samsung700",fontSize: "22px"}}>₹{emi.toFixed(2)}/month for 24 months or</p>
+                        <p className="yesPlease" style={{fontFamily:"samsung700",textAlign:"right", fontSize: "22px"}}>₹{mobileData.price[0].toFixed(2)}</p>
+                        <p style={{textAlign:"right"}}>12 month No Cost EMI</p>
+                        <p style={{textAlign:"right"}}>Earn upto 2% Smartclub points</p>
+                    </div>
+                </Div>
+                <ButtonDiv style={{width:"100%"}}>
+                    <button style={{width:"80%"}}>CONTINUE</button>
+                </ButtonDiv>
+        </Div>
         </Div>
         </Div>
   
         
         {/** bottom  Space */}
-        <Div height={'186px'} width={'80%'}></Div>
+        <Div marginTop={"5%"} textAlign={"center"}>
+            <p style={{fontFamily:"samsung700",fontSize: "22px"}}>{mobileData.product_name}</p>
+            <p style={{fontFamily:"samsung700",fontSize: "18px",textAlign:"left", marginLeft:"10%"}}>See Actual Size</p>
+            {mobileData.actualImage !== undefined ? <img src={mobileData.actualImage} alt="" /> : <></>}
+            
+            <p style={{fontFamily:"samsung700",fontSize: "18px",textAlign:"left", margin:"5% 0% 0% 10%"}}>What's in the box</p>
+            {mobileData.boxImage !== undefined ? <img src={mobileData.boxImage} alt="" /> : <></>}
+        </Div>
         </div>
     </>)
 }

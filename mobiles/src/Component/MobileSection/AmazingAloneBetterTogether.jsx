@@ -61,7 +61,7 @@ export const AmazingAloneBetterTogether = () => {
         {galaxyAmazing.map((el,i)=>{
           if(i != 0){
             if(i%3 === 0){
-              return <LineupCard key={el._id} productName={el.product_name} cardImage={el.cardImage} newBadge={el.new} colors={el.color} colorImage={el.colorImage1} price={el.price} discount={el.discount} storage={el.description.Storage}/>
+              return <LineupCard key={el._id} id={el._id} productName={el.product_name} cardImage={el.cardImage} newBadge={el.new} colors={el.color} colorImage={el.colorImage1} price={el.price} discount={el.discount} storage={el.description.Storage}/>
             }
           }
           })}

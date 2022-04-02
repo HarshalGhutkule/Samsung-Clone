@@ -28,13 +28,13 @@ export const Navbar = () => {
   `;
   return (
     <Main>
-      <Link to={"/"}>Galaxy Z</Link>
-      <Link to={"/"}>Galaxy S</Link>
-      <Link to={"/"}>Galaxy Note</Link>
-      <Link to={"/"}>Galaxy A</Link>
-      <Link to={"/"}>Galaxy M</Link>
-      <Link to={"/"}>Compare</Link>
-      <Link to={"/"}>Accessories</Link>
+      <Link to={"/mobiles"}>Galaxy Z</Link>
+      <Link to={"/mobiles"}>Galaxy S</Link>
+      <Link to={"/mobiles"}>Galaxy Note</Link>
+      <Link to={"/mobiles"}>Galaxy A</Link>
+      <Link to={"/mobiles"}>Galaxy M</Link>
+      <Link to={"/mobiles"}>Compare</Link>
+      <Link to={"/mobiles"}>Accessories</Link>
     </Main>
   );
 };
