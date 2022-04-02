@@ -10,24 +10,48 @@ import axios from "axios";
 
 export const Cart = () => {
   const [data, setData] = useState([]);
+  const[price,setprice]=useState(0)
 
+let total=0;
   useEffect(() => {
     getdata();
   }, []);
   function getdata() {
     axios.get("http://localhost:3001/mobiles").then((res) => {
+       total=res.data.reduce(function (a, b) {
+        return a + b.price[0];
+      }, 0)
+      console.log(total,"sum")
+      setprice(total)
       setData(res.data);
     });
   }
-  console.log(data);
+  console.log(data,);
 
-  var subtotal = data.reduce(function (a, b) {
+  
+
+  
+  console.log(price,"val")
+
+
+  
+
+
+
+  
+
+
+
+
+  const [value ,setValue] = useState(
+   data.reduce(function (a, b) {
     return a + b.price[0];
-  }, 0);
-  const [total, setTotal] = useState(subtotal);
+  }, 0));
+  //console.log(subtotal)
 
-  let gst = Math.round(subtotal * 0.18);
-  let dis = Math.round(subtotal * 0.2);
+   console.log(value,"out")
+  let gst = Math.round(price * 0.18);
+  let dis = Math.round(price * 0.2);
 
   let currentDate = new Date();
   let cDay = currentDate.getDate();
@@ -38,11 +62,14 @@ export const Cart = () => {
   let output1 = cDay + 5 + "/" + cMonth + "/" + cYear;
 
   function handlechange() {
+   
     let x = "masai10";
-    //console.log("hi")
+    console.log("in",price)
     let a = document.getElementById("standard-basic").value;
     if (a == x) {
-      setTotal(total * 0.1);
+      let s=price*0.1;
+    
+      setprice(price-s)
     }
   }
 
@@ -135,7 +162,9 @@ export const Cart = () => {
         <Button
           variant="outlined"
           className="Button"
-          onClick={handlechange}
+          onClick={()=>{
+            handlechange();
+          }}
           style={{
             color: "white",
             backgroundColor: "#e4e5e7",
@@ -322,13 +351,13 @@ export const Cart = () => {
             <Main1>
               <Total>
                 <h2>Total:</h2>
-                <h2>₹{(total + dis + gst).toFixed(2)}</h2>
+                <h2>₹{price.toFixed(2)}</h2>
               </Total>
               <hr width="90%" style={{}}></hr>
 
               <Value>
                 <p>Subtotal</p>
-                <p>₹{total.toFixed(2)}</p>
+                <p>₹{(price-gst-dis).toFixed(2)}</p>
               </Value>
               <Value>
                 <p>Discount</p>
