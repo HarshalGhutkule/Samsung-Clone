@@ -4,6 +4,7 @@ import { Footer } from "../LandingPage/Footer/Footer"
 import AddIcon from '@mui/icons-material/Add';
 import {useNavigate} from "react-router-dom";
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
+
 export const Payment=()=>{
 
     const navigate = useNavigate();
@@ -47,8 +48,42 @@ const Div = styled.div`
         transition: ${({th})=>th};
         transform: ${({tsh})=>tsh};
     }
-    
 `   
+function paymentDone() {
+  
+      let price = 10000;
+  
+      let  token  = "12345678941";
+  
+      let orderDetail = {
+        image:"",
+        product_name:"",
+        price,
+      };
+  
+      orderDetail = JSON.stringify(orderDetail);
+      a()
+      async function a(){
+  
+      try {
+        let url = "https://shopclues-backend.herokuapp.com/orders";
+        let responce = await fetch(url, {
+          method: "POST",
+          body: orderDetail,
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+  
+        window.location.href = "https://shopcluespaytm.herokuapp.com/";
+  
+      } catch (err) {
+        console.log(err);
+      }
+    }
+        
+  }
 
 
 return(<>
@@ -221,7 +256,7 @@ return(<>
         </Div>
 
 
-        <a href='https://shopcluespaytm.herokuapp.com'>
+        
         <button  style={{
             paddingLeft:'15px',
             paddingRight:'15px',
@@ -233,8 +268,8 @@ return(<>
             marginLeft:'33%',
             borderRadius:'20px 20px 20px 20px',
         }} onClick={()=>{
-            console.log(42342)
-        }} >   <AccountBalanceWalletIcon/> Paytm</button></a>
+            paymentDone();
+        }} >   <AccountBalanceWalletIcon/> Paytm</button>
 
 
 

@@ -6,6 +6,8 @@ import { SamgSungAccount } from '../LoginSingup/SamgSungAccount'
 import { MobileOverviewPage } from '../../Mobile-Overview/OverviewPage/MobileOverviewPage'
 import { MobileList } from "../../MobileList/MobileList"
 import { MobileDetail } from "../../MobileDetail/MobileDetail"
+import { Overview } from "../../Cart/Overview"
+import { Cart } from '../../Cart/Cart'
 
 export const Rout = () =>{
 
@@ -20,6 +22,10 @@ export const Rout = () =>{
         <Route path='/mobilesOverview' element={<MobileOverviewPage/>}/>
         <Route path='/mobiles' element={<MobileList/>}/>
         <Route path='/mobilesDetail/:id' element={<MobileDetail/>}/>
+        <Route path='/homeAppliances' element={<Overview/>}/>
+        <Route path='/cart' element={<Cart/>}/>
+        <Route path='/cart/:id' element={<Cart/>}/>
+        <Route path='/payment' element={<Payment/>}/>
 
 
         </Routes>        

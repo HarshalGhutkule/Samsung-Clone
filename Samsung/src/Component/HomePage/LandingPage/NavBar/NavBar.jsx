@@ -30,8 +30,11 @@ export const NavBar = () =>{
          <P margin={'auto'}  cur={'pointer'} fontf={'samsung700'} fontSize={'14px'} bch={'black'} ch={'white'}  ph={'6px'} brh={'20px'}  onClick={()=>{
         navigate('/mobilesOverview')
     }}> Mobile</P>
+    
          <P margin={'auto'}  cur={'pointer'}  fontf={'samsung700'} fontSize={'14px'}  bch={'black'} ch={'white'} ph={'6px'} brh={'20px'}  > TV & AV</P>
-         <P  margin={'auto'}   cur={'pointer'}  fontf={'samsung700'} fontSize={'14px'}  bch={'black'} ch={'white'} ph={'6px'} brh={'20px'}  > Home Appliances</P>
+         <P  margin={'auto'}   cur={'pointer'}  fontf={'samsung700'} fontSize={'14px'}  bch={'black'} ch={'white'} ph={'6px'} brh={'20px'} onClick={()=>{
+        navigate('/homeAppliances')
+    }} > Home Appliances</P>
          <P margin={'auto'}   cur={'pointer'} fontf={'samsung700'} fontSize={'14px'}  bch={'black'} ch={'white'} ph={'6px'} brh={'20px'}  > Laptops & Monitors</P>
          <P  margin={'auto'}   cur={'pointer'} fontf={'samsung700'} fontSize={'14px'}  bch={'black'} ch={'white'} ph={'6px'} brh={'20px'}  > Display</P>
         
@@ -49,7 +52,9 @@ export const NavBar = () =>{
             {/** Icons */}
         <Div height={'100%'} width={'10%'} marginRight={'1%'} display={'flex'}> 
         <P  marginTop={'25px'}  cur={'pointer'}  fontf={'samsung700'} fontSize={'14px'}  > <SearchOutlinedIcon/></P>
-        <P  marginTop={'25px'}  cur={'pointer'}  fontf={'samsung700'} fontSize={'14px'}  > <ShoppingCartOutlinedIcon/></P>
+        <P  marginTop={'25px'}  cur={'pointer'}  fontf={'samsung700'} fontSize={'14px'} onClick={()=>{
+        navigate('/cart')
+    }}  > <ShoppingCartOutlinedIcon/></P>
         <P  marginTop={'25px'}  cur={'pointer'}  fontf={'samsung700'} fontSize={'14px'} onClick={()=>{
             navigate('/loginpage')
         }} > <PersonOutlineOutlinedIcon/></P>

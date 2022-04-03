@@ -169,6 +169,10 @@ const Price = styled.div`
     & button:hover {
         opacity: 75%;
     }
+    & button > a{
+        text-decoration:none;
+        color:white;
+    }
 
 `
 
@@ -204,7 +208,7 @@ const Price = styled.div`
             </Price>
             <ButtonDiv>
                 <p></p>
-                <button>CONTINUE</button>
+                <button><Link to={`/cart/${mobileData._id}`}>CONTINUE</Link></button>
             </ButtonDiv>
         </Div>
         {/**Curousel */}
@@ -588,7 +592,7 @@ Also, don't worry! Pre-order gifts are still valid to all customers who placed t
                     </div>
                 </Div>
                 <ButtonDiv style={{width:"100%"}}>
-                    <button style={{width:"80%"}}>CONTINUE</button>
+                    <button style={{width:"80%"}}><Link to={`/cart/${mobileData._id}`}>CONTINUE</Link></button>
                 </ButtonDiv>
         </Div>
         </Div>
