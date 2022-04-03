@@ -82,7 +82,7 @@ export const ReactCurousel = () => {
             </h1>
             <p>Get additional benefits worth ₹ 19000</p>
             <Link to={"/"}>Learn More</Link>
-            <button><Link to={"/mobiles/6245aa95302d60cadb16648d"}>Buy now</Link></button>
+            <button><Link to={"/mobilesDetail/6245aa95302d60cadb16648d"}>Buy now</Link></button>
           </Main>
         </Carousel.Item>
         <Carousel.Item interval={2000}>
@@ -99,7 +99,7 @@ export const ReactCurousel = () => {
             </h1>
             <p>Unfold your world</p>
             <Link to={"/"}>Learn More</Link>
-            <button><Link to={"/mobiles/62457d8f302d60cadb166485"}>Buy now</Link></button>
+            <button><Link to={"/mobilesDetail/62457d8f302d60cadb166485"}>Buy now</Link></button>
           </Main>
         </Carousel.Item>
         <Carousel.Item>
@@ -112,7 +112,7 @@ export const ReactCurousel = () => {
             <h1>Galaxy A52s 5G</h1>
             <p>Snapdragon 778G | 120Hz sAMOLED | 5G Guarantee</p>
             <Link to={"/"}>Learn More</Link>
-            <button><Link to={"/mobiles/6245bbfb302d60cadb166499"}>Buy now</Link></button>
+            <button><Link to={"/mobilesDetail/6245bbfb302d60cadb166499"}>Buy now</Link></button>
           </Main>
         </Carousel.Item>
       </SubMain>

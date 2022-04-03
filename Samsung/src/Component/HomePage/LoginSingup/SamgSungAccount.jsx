@@ -24,7 +24,7 @@ async function signup() {
     try {
       
      const data = JSON.stringify(ref.current);
-      let url = "http://localhost:4500/register"
+      let url = "https://samsung-clone.herokuapp.com/register"
     
       let response = await fetch(url, {
         method: "POST",

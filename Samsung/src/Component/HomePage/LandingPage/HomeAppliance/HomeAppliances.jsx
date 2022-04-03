@@ -38,6 +38,10 @@ export const HomeAppliances = () => {
     & Button:hover {
       opacity: 75%;
     }
+    & button > a{
+      text-decoration:none;
+      color:white;
+    }
     
   `;
   const SubMain = styled(Carousel)`
@@ -74,7 +78,7 @@ export const HomeAppliances = () => {
             
             <p style={{lineHeight:"20px",marginLeft:'24%' }} >Designed for you, by you</p>
             <Link to={"/"} style={{ marginLeft:'24%' }}  >Learn More</Link>
-            <button  >  Buy Now</button>
+            <button><Link to={"*"}>Buy Now</Link></button>
           </Main>
         </Carousel.Item>
 
@@ -92,7 +96,7 @@ export const HomeAppliances = () => {
             
             <p style={{ lineHeight:"20px",marginLeft:'5%' }} >Makes tasty and hygienic curd</p>
             <Link to={"/"} style={{ marginLeft:'8%' }}  >Learn More</Link>
-            <button  >  Buy Now</button>
+            <button><Link to={"*"}>Buy Now</Link></button>
           </Main>
         </Carousel.Item>
 
@@ -111,7 +115,7 @@ export const HomeAppliances = () => {
             <p style={{ lineHeight:"20px",marginLeft:'15%' ,color:'white' }} >
             Eliminates up to 99.9% food bacteria*</p>
             <Link to={"/"} style={{ marginLeft:'18%' ,color:'white'  } }  >Learn More</Link>
-            <button style={{ backgroundColor:'white' ,color:'black'  } }  >  Buy Now</button>
+            <button style={{ backgroundColor:'white' ,color:'black'  } } ><Link style={{ color:'black'} } to={"*"}>Buy Now</Link></button>
           </Main>
         </Carousel.Item>
 
@@ -126,7 +130,7 @@ export const HomeAppliances = () => {
             WindFree
             </h1>
             <p  style={{ color:'white', marginLeft:'5%' }}>Powerful and gentle cooling</p>
-            <button  style={{ backgroundColor:'white' ,color:'black' ,marginLeft:'8%' } } >Buy Now </button>
+            <button  style={{ backgroundColor:'white' ,color:'black' ,marginLeft:'8%' } } ><Link style={{ color:'black'} } to={"*"}>Buy Now</Link></button>
           </Main>
         </Carousel.Item>
 

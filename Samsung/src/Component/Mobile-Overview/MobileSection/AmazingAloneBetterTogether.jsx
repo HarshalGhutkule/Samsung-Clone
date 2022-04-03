@@ -1,12 +1,11 @@
 import { LineupCard } from "../../Mobile-Overview/Lineup-card/LineupCard";
 import styled from "styled-components";
-import axios from "axios";
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export const AmazingAloneBetterTogether = () => {
 
-  const [galaxyAmazing, setGalaxyAmazing] = useState(null);
+  let data = useSelector((store)=>store.compare);
 
   const Main = styled.div`
     height: 800px;
@@ -38,27 +37,13 @@ export const AmazingAloneBetterTogether = () => {
     }
   `;
 
-  useEffect(() => {
-    getData();
-  }, []);
-
-  const getData = () => {
-    axios.get("http://localhost:3001/mobiles").then(({ data }) => {
-      setGalaxyAmazing(data);
-    });
-  };
-
-  if (galaxyAmazing === null) {
-    return null;
-  }
-
 
   return (
     <Main>
       <br />
       <br />
       <div className="flexDiv">
-        {galaxyAmazing.map((el,i)=>{
+        {data.map((el,i)=>{
           if(i != 0){
             if(i%3 === 0){
               return <LineupCard key={el._id} id={el._id} productName={el.product_name} cardImage={el.cardImage} newBadge={el.new} colors={el.color} colorImage={el.colorImage1} price={el.price} discount={el.discount} storage={el.description.Storage}/>

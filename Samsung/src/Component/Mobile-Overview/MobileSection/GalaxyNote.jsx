@@ -1,11 +1,14 @@
 import { LineupCard } from "../../Mobile-Overview/Lineup-card/LineupCard";
 import styled from "styled-components";
-import axios from "axios";
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export const GalaxyNote = () => {
-  const [galaxyNote, setGalaxyNote] = useState(null);
+
+  
+  let data = useSelector((store)=>store.compare);
+
+  data = data.filter((a)=>a.product_name[7] == "N")
 
   const Main = styled.div`
     height: 800px;
@@ -37,26 +40,13 @@ export const GalaxyNote = () => {
     }
   `;
 
-  useEffect(() => {
-    getData();
-  }, []);
-
-  const getData = () => {
-    axios.get("http://localhost:3001/mobiles").then(({ data }) => {
-      setGalaxyNote(data.slice(7, 9));
-    });
-  };
-
-  if (galaxyNote === null) {
-    return null;
-  }
 
   return (
     <Main>
       <br />
       <br />
       <div className="flexDiv">
-        {galaxyNote.map((el)=>(
+        {data.map((el)=>(
           <LineupCard key={el._id} id={el._id} productName={el.product_name} cardImage={el.cardImage} newBadge={el.new} colors={el.color} colorImage={el.colorImage1} price={el.price} discount={el.discount} storage={el.description.Storage}/>
         ))}
       </div>

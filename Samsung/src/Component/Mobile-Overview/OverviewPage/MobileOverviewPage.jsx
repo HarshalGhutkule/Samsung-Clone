@@ -10,8 +10,25 @@ import { GalaxyZ } from "../MobileSection/GalaxyZ"
 import { Navbar } from "../Navbar/Navbar"
 import { NavBar } from "../../HomePage/LandingPage/NavBar/NavBar"
 import { Footer } from "../../HomePage/LandingPage/Footer/Footer"
+import axios from "axios";
+import { useEffect } from "react";
+import { useDispatch} from "react-redux";
+import { compareData } from "../../../Redux/action";
 
 export const MobileOverviewPage = () =>{
+
+
+    const dispatch = useDispatch();
+
+    useEffect(()=>{
+        getData();
+      },[])
+    
+      const getData = ()=>{
+        axios.get("https://samsung-clone.herokuapp.com/mobiles").then(({data})=>{
+          dispatch(compareData(data));
+        })
+      }
 
     return(<>
       <NavBar/>

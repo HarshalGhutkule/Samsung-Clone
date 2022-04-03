@@ -7,9 +7,24 @@ import { WhatsNew } from "../MonthPick/MonthPick"
 import { Mobile } from "../Mobile/Mobile"
 import { Tv } from "../TVandAV/TV"
 import { HomeAppliances } from "../HomeAppliance/HomeAppliances"
+import axios from "axios";
+import { useEffect } from "react";
+import { useDispatch} from "react-redux";
+import { compareData } from "../../../../Redux/action";
 
 export const Home = () =>{
 
+    const dispatch = useDispatch();
+
+    useEffect(()=>{
+        getData();
+      },[])
+    
+      const getData = ()=>{
+        axios.get("https://samsung-clone.herokuapp.com/mobiles").then(({data})=>{
+          dispatch(compareData(data));
+        })
+      }
 
     return(<>
         

@@ -31,12 +31,18 @@ export const NavBar = () =>{
         navigate('/mobilesOverview')
     }}> Mobile</P>
     
-         <P margin={'auto'}  cur={'pointer'}  fontf={'samsung700'} fontSize={'14px'}  bch={'black'} ch={'white'} ph={'6px'} brh={'20px'}  > TV & AV</P>
+         <P margin={'auto'}  cur={'pointer'}  fontf={'samsung700'} fontSize={'14px'}  bch={'black'} ch={'white'} ph={'6px'} brh={'20px'}  onClick={()=>{
+        navigate('*')
+    }}> TV & AV</P>
          <P  margin={'auto'}   cur={'pointer'}  fontf={'samsung700'} fontSize={'14px'}  bch={'black'} ch={'white'} ph={'6px'} brh={'20px'} onClick={()=>{
-        navigate('/homeAppliances')
+        navigate('*')
     }} > Home Appliances</P>
-         <P margin={'auto'}   cur={'pointer'} fontf={'samsung700'} fontSize={'14px'}  bch={'black'} ch={'white'} ph={'6px'} brh={'20px'}  > Laptops & Monitors</P>
-         <P  margin={'auto'}   cur={'pointer'} fontf={'samsung700'} fontSize={'14px'}  bch={'black'} ch={'white'} ph={'6px'} brh={'20px'}  > Display</P>
+         <P margin={'auto'}   cur={'pointer'} fontf={'samsung700'} fontSize={'14px'}  bch={'black'} ch={'white'} ph={'6px'} brh={'20px'}  onClick={()=>{
+        navigate('*')
+    }}> Laptops & Monitors</P>
+         <P  margin={'auto'}   cur={'pointer'} fontf={'samsung700'} fontSize={'14px'}  bch={'black'} ch={'white'} ph={'6px'} brh={'20px'}  onClick={()=>{
+        navigate('/mobilesOverview')
+    }}> Display</P>
         
         
         </Div>

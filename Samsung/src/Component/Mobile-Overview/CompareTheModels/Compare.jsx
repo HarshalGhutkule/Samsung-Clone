@@ -8,9 +8,9 @@ export const Compare = () => {
 
     const data = useSelector((store)=>store.compare);
 
-    const [productCompare1, setproductCompare1] = useState(data.length === 0 ? null : data);
-    const [productCompare2, setproductCompare2] = useState(data.length === 0 ? null : data);
-    const [productCompare3, setproductCompare3] = useState(data.length === 0 ? null : data);
+    const [productCompare1, setproductCompare1] = useState(null);
+    const [productCompare2, setproductCompare2] = useState(null);
+    const [productCompare3, setproductCompare3] = useState(null);
 
 
   const Main = styled.div`
@@ -82,21 +82,21 @@ export const Compare = () => {
 
   const handleChange1 = (e)=>{
       
-    axios.get(`http://localhost:3001/mobiles`).then(({data})=>{
+    axios.get(`https://samsung-clone.herokuapp.com/mobiles`).then(({data})=>{
         setproductCompare1(data.filter((a)=>a.product_name === e.target.value));
     })
   }
 
   const handleChange2 = (e)=>{
       
-    axios.get(`http://localhost:3001/mobiles`).then(({data})=>{
+    axios.get(`https://samsung-clone.herokuapp.com/mobiles`).then(({data})=>{
         setproductCompare2(data.filter((a)=>a.product_name === e.target.value));
     })
   }
 
   const handleChange3 = (e)=>{
       
-    axios.get(`http://localhost:3001/mobiles`).then(({data})=>{
+    axios.get(`https://samsung-clone.herokuapp.com/mobiles`).then(({data})=>{
         setproductCompare3(data.filter((a)=>a.product_name === e.target.value));
     })
   }
@@ -116,7 +116,7 @@ export const Compare = () => {
             <option value="Model">Model</option>
           </select>
           <select className="dropDown" onChange={handleChange1}>
-              <option value="Galaxy Z Fold3 5G">Galaxy Z Fold3 5G</option>
+              <option value="Select">Select</option>
               <option value="Galaxy Z Flip3 5G">Galaxy Z Flip3 5G</option>
               <option value="Galaxy Z Fold2 5G">Galaxy Z Fold2 5G</option>
               <option value="Galaxy Z Flip">Galaxy Z Flip</option>
@@ -131,7 +131,7 @@ export const Compare = () => {
               <option value="Galaxy A22 (6GB RAM)">Galaxy A22 (6GB RAM)</option>
           </select>
           <select className="dropDown" onChange={handleChange2}>
-              <option value="Galaxy Z Fold3 5G">Galaxy Z Fold3 5G</option>
+              <option value="Select">Select</option>
               <option value="Galaxy Z Flip3 5G">Galaxy Z Flip3 5G</option>
               <option value="Galaxy Z Fold2 5G">Galaxy Z Fold2 5G</option>
               <option value="Galaxy Z Flip">Galaxy Z Flip</option>
@@ -146,7 +146,7 @@ export const Compare = () => {
               <option value="Galaxy A22 (6GB RAM)">Galaxy A22 (6GB RAM)</option>
           </select>
           <select className="dropDown" onChange={handleChange3}>
-              <option value="Galaxy Z Fold3 5G">Galaxy Z Fold3 5G</option>
+              <option value="Select">Select</option>
               <option value="Galaxy Z Flip3 5G">Galaxy Z Flip3 5G</option>
               <option value="Galaxy Z Fold2 5G">Galaxy Z Fold2 5G</option>
               <option value="Galaxy Z Flip">Galaxy Z Flip</option>
@@ -164,13 +164,13 @@ export const Compare = () => {
       <br />
       <div className="flexDiv">
         {productCompare1 && productCompare1.map((el)=>(
-          <LineupCard key={el._id} productName={el.product_name} cardImage={el.cardImage} newBadge={el.new} colors={el.color} colorImage={el.colorImage1} price={el.price} discount={el.discount} storage={el.description.Storage}/>
+          <LineupCard key={el._id} id={el._id} productName={el.product_name} cardImage={el.cardImage} newBadge={el.new} colors={el.color} colorImage={el.colorImage1} price={el.price} discount={el.discount} storage={el.description.Storage}/>
         ))}
         {productCompare2 && productCompare2.map((el)=>(
-          <LineupCard key={el._id} productName={el.product_name} cardImage={el.cardImage} newBadge={el.new} colors={el.color} colorImage={el.colorImage1} price={el.price} discount={el.discount} storage={el.description.Storage}/>
+          <LineupCard key={el._id} id={el._id} productName={el.product_name} cardImage={el.cardImage} newBadge={el.new} colors={el.color} colorImage={el.colorImage1} price={el.price} discount={el.discount} storage={el.description.Storage}/>
         ))}
         {productCompare3 && productCompare3.map((el)=>(
-          <LineupCard key={el._id} productName={el.product_name} cardImage={el.cardImage} newBadge={el.new} colors={el.color} colorImage={el.colorImage1} price={el.price} discount={el.discount} storage={el.description.Storage}/>
+          <LineupCard key={el._id} id={el._id} productName={el.product_name} cardImage={el.cardImage} newBadge={el.new} colors={el.color} colorImage={el.colorImage1} price={el.price} discount={el.discount} storage={el.description.Storage}/>
         ))}
       </div>
       <br />
@@ -271,7 +271,6 @@ export const Compare = () => {
               <p>* S pen Fold Edition sold separately and is only compatible with Galaxy Z Fold3 5G.</p>
               <p>*5G Devices are 5G ready, connectivity dependent on network availability.</p>
           </div>
-          
       </div>
     </Main>
   );

@@ -12,25 +12,32 @@ import { Footer } from "../HomePage/LandingPage/Footer/Footer";
 import { Link, useParams } from "react-router-dom";
 
 export const Cart = () => {
-  const [data, setData] = useState([]);
+  let array = [];
+  let [data, setData] = useState(null);
   const[price,setprice]=useState(0)
 
   const {id} = useParams();
-  console.log(id);
+  
+
 
 let total=0;
   useEffect(() => {
-    getdata();
+    if(id !== undefined){
+      getdata();
+    }
+    
   }, []);
 
   function getdata() {
-    axios.get(`http://localhost:3001/mobiles/${id}`).then((res) => {
-       total=res.data.reduce(function (a, b) {
-        return a + b.price[0];
-      }, 0)
+    axios.get(`https://samsung-clone.herokuapp.com/mobiles/${id}`).then((res) => {
+      array.push(res.data);
+      total = res.data.price[0];
+      //  total=res.data.reduce(function (a, b) {
+      //   return a + b.price[0];
+      // }, 0)
       console.log(total,"sum")
       setprice(total)
-      setData(res.data);
+      setData(array);
     });
   }
   console.log(data);
@@ -42,13 +49,18 @@ let total=0;
 
 
   const [value ,setValue] = useState(
-   data.reduce(function (a, b) {
-    return a + b.price[0];
-  }, 0));
+
+    0
+
+  //  data.reduce(function (a, b) {
+  //   return a + b.price[0];
+  // }, 0)
+  
+  );
   //console.log(subtotal)
 
    console.log(value,"out")
-  let gst = Math.round(price * 0.18);
+  let gst = Math.round(price * 0.06);
   let dis = Math.round(price * 0.2);
 
   let currentDate = new Date();
@@ -130,12 +142,13 @@ let total=0;
     margin-right: 40px;
     margin-top: -120px;
     background-color: #f7f7f7;
+    border-radius:20px;
   `;
 
   const Final = styled.div`
     margin: auto;
     margin-top: 80px;
-    margin-left: 100px;
+    margin-left: 10px;
     font-size: 12px;
   `;
   const Final1 = styled.div`
@@ -147,6 +160,11 @@ let total=0;
     margin-left: 170px;
     font-size: 12px;
   `;
+
+
+  // if(data === null){
+  //   return null;
+  // }
 
   return (
     <div>
@@ -190,13 +208,11 @@ let total=0;
         <Big>
           <div
             style={{
-              overflowY: "scroll",
-              height: "600px",
-              overflowX: "hidden",
+              height: "350px",
             }}
           >
             {" "}
-            {data.map((el) => {
+            {data && data.map((el) => {
               return (
                 <>
                   {" "}
@@ -213,35 +229,41 @@ let total=0;
                         <img src={el.actualImage} width="200px" />
                       </div>
 
-                      <h3
+                      <p
                         style={{
                           marginLeft: "30px",
+                          fontFamily:"samsung700",
+                          fontSize:"14px",
                         }}
                       >
                         {el.product_name}
-                      </h3>
-                      <h3 style={{ marginLeft: "350px" }}>
+                      </p>
+                      <p style={{ marginLeft: "280px",fontFamily:"samsung700",
+                          fontSize:"18px", }}>
                         ₹{el.price[0].toFixed(2)}
-                      </h3>
+                      </p>
                     </Part>
                     <h6
                       style={{
-                        marginLeft: "780px",
+                        marginLeft: "610px",
                         marginTop: "-50px",
                         textDecoration: "line-through",
+                        fontFamily:"samsung700",
+                        fontSize:"14px",
                       }}
                     >
-                      ₹{Number(el.price[1]).toFixed(2)}
+                      ₹{Number(el.price[0]+20000).toFixed(2)}
                     </h6>
 
                     <h6
                       style={{
-                        marginLeft: "760px",
-                        marginTop: "-25px",
+                        marginLeft: "630px",
                         color: "blue",
+                        fontFamily:"samsung700",
+                        fontSize:"14px",
                       }}
                     >
-                      SAVE ₹{(Number(el.price[1]) - el.price[0]).toFixed(2)}
+                      SAVE ₹{(Number(el.price[0]+20000) - el.price[0]).toFixed(2)}
                     </h6>
 
                     <Part1>
@@ -249,6 +271,8 @@ let total=0;
                         style={{
                           marginLeft: "200px",
                           marginTop: "-30px",
+                          fontFamily:"samsung400",
+                          fontSize:"14px",
                         }}
                       >
                         Standard Delivery:{output}
@@ -256,6 +280,8 @@ let total=0;
                       <p
                         style={{
                           marginLeft: "200px",
+                          fontFamily:"samsung400",
+                          fontSize:"14px",
                         }}
                       >
                         Installation & Demo: {output1}
@@ -264,16 +290,21 @@ let total=0;
                         <h4
                           style={{
                             marginLeft: "200px",
+                            fontFamily:"SamsungSharpSans",
+                            fontSize:"18px",
+
                           }}
                         >
                           Discounts
                         </h4>
                         <h4
                           style={{
-                            marginLeft: "440px",
+                            marginLeft: "300px",
+                            fontFamily:"samsung700",
+                            fontSize:"18px",
                           }}
                         >
-                          -₹{dis.toFixed(2)}
+                          -₹{el.discount.toFixed(2)}
                         </h4>
                       </Part3>
                       <Part3>
@@ -281,13 +312,15 @@ let total=0;
                           style={{
                             marginLeft: "200px",
                             textDecoration: "underline",
+                            fontFamily:"SamsungSharpSans",
+                            fontSize:"14px",
                           }}
                         >
                           +Buy one more
                         </h4>
                         <button
                           style={{
-                            marginLeft: "440px",
+                            marginLeft: "340px",
                             height: "-5px",
                             width: "-5px",
                             backgroundColor: "white",
@@ -317,6 +350,8 @@ let total=0;
                       <h4
                         style={{
                           marginLeft: "30px",
+                          fontFamily:"SamsungSharpSans",
+                          fontSize:"14px",
                         }}
                       >
                         Exchange Offer
@@ -324,9 +359,9 @@ let total=0;
                     </Part2>
                     <p
                       style={{
-                        marginLeft: "315px",
-                        marginTop: "-20px",
-                        fontSize: "12px",
+                        marginLeft: "300px",
+                        fontFamily:"Samsung400",
+                        fontSize:"14px",
                       }}
                     >
                       Exchange your product & receive exchange discount on your
@@ -349,26 +384,57 @@ let total=0;
           <div>
             <Main1>
               <Total>
-                <h2>Total:</h2>
-                <h2>₹{price.toFixed(2)}</h2>
+                <p style={{
+                            fontFamily:"SamsungSharpSans",
+                            fontSize:"28px",}}>Total:</p>
+
+                <p style={{
+                            fontFamily:"SamsungSharpSans",
+                            fontSize:"28px",}}
+                >₹{price.toFixed(2)}</p>
               </Total>
-              <hr width="90%" style={{}}></hr>
+              <hr width="90%" style={{marginLeft:"5%"}}></hr>
 
               <Value>
-                <p>Subtotal</p>
-                <p>₹{(price-gst-dis).toFixed(2)}</p>
+                <p style={{
+                            fontFamily:"Samsung700",
+                            fontSize:"14px",}}
+                >Subtotal</p>
+                <p style={{
+                            fontFamily:"Samsung700",
+                            fontSize:"14px",}}
+
+                >₹{(price+gst-dis).toFixed(2)}</p>
               </Value>
               <Value>
-                <p>Discount</p>
-                <p>₹{dis.toFixed(2)}</p>
+                <p style={{
+                            fontFamily:"Samsung700",
+                            fontSize:"14px",}}
+                >Discount</p>
+                <p style={{
+                            fontFamily:"Samsung700",
+                            fontSize:"14px",}}
+                >₹{data && data[0].discount.toFixed(2)}</p>
               </Value>
               <Value>
-                <p>Shipping charges</p>
-                <p>₹0.00</p>
+                <p style={{
+                            fontFamily:"Samsung700",
+                            fontSize:"14px",}}
+                >Shipping charges</p>
+                <p style={{
+                            fontFamily:"Samsung700",
+                            fontSize:"14px",}}
+                >₹0.00</p>
               </Value>
               <Value>
-                <p>Estimated GST*</p>
-                <p>₹{gst.toFixed(2)}</p>
+                <p  style={{
+                            fontFamily:"Samsung700",
+                            fontSize:"14px",}}
+                >Estimated GST*</p>
+                <p  style={{
+                            fontFamily:"Samsung700",
+                            fontSize:"14px",}}
+                >₹{gst.toFixed(2)}</p>
               </Value>
               <Value>
                 <button
@@ -383,25 +449,35 @@ let total=0;
                 ><Link style={{
                   color: "white",
                   textDecoration: "none",
+                    fontFamily:"Samsung700",
+                    fontSize:"14px"
                 }}
-                to={"/payment"}>Pay Now</Link>
+                to={`/payment/${data && data[0]._id}`}>Pay Now</Link>
                   
                 </button>
               </Value>
               <Final>
-                <p>No Cost EMI starts from ₹ 15072.22/ month.</p>
-                <p>Standard EMI starts from ₹ 12571.25/ month.</p>
+                <p style={{
+                            fontFamily:"Samsung400"}}
+                >No Cost EMI starts from ₹ 15072.22/ month.</p>
+                <p style={{
+                            fontFamily:"Samsung400"}}
+                >Standard EMI starts from ₹ 12571.25/ month.</p>
               </Final>
-              <hr width="100%"></hr>
+              <br />
 
               <Final1>
-                <p>
+                <p style={{
+                            fontFamily:"Samsung400"}}
+                >
                   By submitting your order, you agree to the Terms of Service,
-                  Terms of Use and
+                  Terms of Use
                 </p>
               </Final1>
               <Final2>
-                <p>Privacy Policy</p>
+                <p style={{
+                            fontFamily:"Samsung400",marginTop:"0%",float:"left",}}
+                >and Privacy Policy</p>
               </Final2>
             </Main1>
           </div>

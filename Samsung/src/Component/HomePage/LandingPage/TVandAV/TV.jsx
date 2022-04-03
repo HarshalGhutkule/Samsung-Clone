@@ -38,7 +38,10 @@ export const Tv = () => {
     & Button:hover {
       opacity: 75%;
     }
-    
+    & button > a{
+      text-decoration:none;
+      color:white;
+    }
   `;
   const SubMain = styled(Carousel)`
   & .carousel-indicators {
@@ -83,8 +86,8 @@ export const Tv = () => {
             </h1>
             
             <p style={{lineHeight:"20px",marginLeft:'24%' }} ></p>
-            <Link to={"/"} style={{ marginLeft:'7%' }}  >Learn More</Link>
-            <button  >  Buy Now</button>
+            <Link to={"*"} style={{ marginLeft:'7%' }}  >Learn More</Link>
+            <button><Link to={"*"}>Buy Now</Link></button>
           </Main>
         </Carousel.Item>
 
@@ -102,7 +105,7 @@ export const Tv = () => {
       </h1>
       <p  style={{ color:'white', fontSize:'20px'  }}>Unconditionally beautiful</p>
       <Link to={"/"} style={{ marginLeft:'3%' ,color:'white',borderBottom: '2px solid white' }}  >Learn More</Link>
-      <button  style={{ backgroundColor:'white' ,color:'black' ,marginLeft:'3%' } } >Buy Now </button>
+      <button style={{ backgroundColor:'white' ,color:'black' ,marginLeft:'3%' } }><Link to={"*"} style={{ color:'black'} }>Buy Now</Link></button>
     </Main>
   </Carousel.Item>
 
@@ -117,7 +120,7 @@ export const Tv = () => {
           <h1  style={{color:'white', fontSize:'48px'  }}>
           Greatness never ends
           </h1>
-          <button  style={{ backgroundColor:'white' ,color:'black' ,marginLeft:'24%' } } >Buy Now </button>
+          <button  style={{ backgroundColor:'white' ,color:'black' ,marginLeft:'24%' } }><Link to={"*"} style={{ color:'black'} }>Buy Now</Link></button>
         </Main>
       </Carousel.Item>
 
@@ -137,7 +140,7 @@ export const Tv = () => {
             
             <p style={{lineHeight:"20px",marginLeft:'5%' }} ></p>
             <Link to={"/"} style={{ marginLeft:'35%'  }}  ></Link>
-            <button  >  Buy Now</button>
+            <button><Link to={"*"}>Buy Now</Link></button>
           </Main>
         </Carousel.Item>
 
@@ -160,7 +163,7 @@ export const Tv = () => {
             
             <p style={{ lineHeight:"20px",marginLeft:'5%' }} >Crystal Definition or Nothing</p>
             <Link to={"/"} style={{ marginLeft:'8%' }}  >Learn More</Link>
-            <button  >  Buy Now</button>
+            <button><Link to={"*"}>Buy Now</Link></button>
           </Main>
         </Carousel.Item>
       </SubMain>

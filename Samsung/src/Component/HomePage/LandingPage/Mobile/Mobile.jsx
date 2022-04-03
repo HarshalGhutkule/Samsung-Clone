@@ -68,6 +68,8 @@ export const Mobile = () => {
     }
   `;
 
+  
+
   return (
     <div>
       <SubMain >
@@ -83,7 +85,7 @@ export const Mobile = () => {
             </h1>
             <p>Get Galaxy Buds2 at ₹ 2999*</p>
             <Link to={"/"}>Learn More</Link>
-            <button><Link to={"/mobiles/6245aa95302d60cadb16648d"}>Buy now</Link></button>
+            <button><Link to={`/mobilesOverview`}>Buy now</Link></button>
           </Main>  
       
         </Carousel.Item>
@@ -99,7 +101,7 @@ export const Mobile = () => {
             </h1>
             <p>Starting ₹ 31499*</p>
             <Link to={"/"}>Learn More</Link>
-            <button><Link to={"/mobiles/6245aa95302d60cadb16648d"}>Buy now</Link></button>
+            <button><Link to={`/mobilesOverview`}>Buy now</Link></button>
           </Main> 
        
         </Carousel.Item>
@@ -115,7 +117,7 @@ export const Mobile = () => {
             </h1>
             <p>Additional ₹ 10000 instant cashback*  | 50% off on Keyboard Cover</p>
             <Link to={"/"}>Learn More</Link>
-            <button><Link to={"/mobiles/6245aa95302d60cadb16648d"}>Buy now</Link></button>
+            <button><Link to={`/mobilesOverview`}>Buy now</Link></button>
           </Main> 
         </Carousel.Item>
 
@@ -132,7 +134,7 @@ export const Mobile = () => {
             </h1>
             <p>Additional upgrade bonus up to ₹ 10000 | ₹ 7000 cashback* on HDFC and ICICI bank cards</p>
             <Link to={"/"}>Learn More</Link>
-            <button><Link to={"/mobiles/6245aa95302d60cadb16648d"}>Buy now</Link></button>
+            <button><Link to={`/mobilesOverview`}>Buy now</Link></button>
           </Main> 
          
         </Carousel.Item>
@@ -151,7 +153,7 @@ export const Mobile = () => {
             </h1>
             <p>'M up for it all</p>
             <Link to={"/"}>Learn More</Link>
-            <button><Link to={"/mobiles/6245aa95302d60cadb16648d"}>Buy now</Link></button>
+            <button><Link to={`/mobilesOverview`}>Buy now</Link></button>
           </Main> 
          
 

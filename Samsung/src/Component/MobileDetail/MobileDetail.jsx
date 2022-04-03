@@ -18,7 +18,7 @@ export const MobileDetail=()=>{
     },[])
 
     const getData = ()=>{
-        axios.get(`http://localhost:3001/mobiles/${id}`).then(({data})=>{
+        axios.get(`https://samsung-clone.herokuapp.com/mobiles/${id}`).then(({data})=>{
             console.log("mobileData",data);
             setMobileData(data);
         })

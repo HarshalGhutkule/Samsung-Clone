@@ -8,6 +8,7 @@ import { MobileList } from "../../MobileList/MobileList"
 import { MobileDetail } from "../../MobileDetail/MobileDetail"
 import { Overview } from "../../Cart/Overview"
 import { Cart } from '../../Cart/Cart'
+import { NotFound } from '../../NotFound/NotFound'
 
 export const Rout = () =>{
 
@@ -25,7 +26,8 @@ export const Rout = () =>{
         <Route path='/homeAppliances' element={<Overview/>}/>
         <Route path='/cart' element={<Cart/>}/>
         <Route path='/cart/:id' element={<Cart/>}/>
-        <Route path='/payment' element={<Payment/>}/>
+        <Route path='/payment/:id' element={<Payment/>}/>
+        <Route path='*' element={<NotFound/>}/>
 
 
         </Routes>        
