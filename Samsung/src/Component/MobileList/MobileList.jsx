@@ -259,8 +259,8 @@ const availableToOrder = ()=>{
       <NavBar/>
       <Navbar/>
       <Navbarr>
-        <Link to={"/"}><FunnelFill size={20} color="black"/>Filters</Link>
-        <Link to={"/"}>{results} Results</Link>
+        <a><FunnelFill size={20} color="black"/>Filters</a>
+        <a>{results} Results</a>
         <p onClick={()=>{setMobileData(data)
             setResults(data.length)
             setPriceState1(false)

@@ -1,10 +1,16 @@
 import styled from "styled-components";
 import Carousel from "react-bootstrap/Carousel";
 import { Link } from "react-router-dom";
+import {useNavigate} from 'react-router-dom'
+
 export const Mobile = () => {
   //styled component for Navbar
 
+  
+  const navigate = useNavigate();
+  
   const Main = styled(Carousel.Caption)`
+
 
     font-family: samsung400;
     color: black;
@@ -38,10 +44,6 @@ export const Mobile = () => {
     }
     & Button:hover {
       opacity: 75%;
-    }
-    & Button > a{
-      color:white;
-      text-decoration:none;
     }
   `;
 
@@ -85,7 +87,9 @@ export const Mobile = () => {
             </h1>
             <p>Get Galaxy Buds2 at ₹ 2999*</p>
             <Link to={"/"}>Learn More</Link>
-            <button><Link to={`/mobilesOverview`}>Buy now</Link></button>
+            <button onClick={()=>{
+        navigate('/mobilesOverview')
+    }}>Buy now</button>
           </Main>  
       
         </Carousel.Item>
@@ -101,7 +105,9 @@ export const Mobile = () => {
             </h1>
             <p>Starting ₹ 31499*</p>
             <Link to={"/"}>Learn More</Link>
-            <button><Link to={`/mobilesOverview`}>Buy now</Link></button>
+            <button onClick={()=>{
+        navigate('/mobilesOverview')
+    }}>Buy now</button>
           </Main> 
        
         </Carousel.Item>
@@ -117,7 +123,9 @@ export const Mobile = () => {
             </h1>
             <p>Additional ₹ 10000 instant cashback*  | 50% off on Keyboard Cover</p>
             <Link to={"/"}>Learn More</Link>
-            <button><Link to={`/mobilesOverview`}>Buy now</Link></button>
+            <button onClick={()=>{
+        navigate('/mobilesOverview')
+    }}>Buy now</button>
           </Main> 
         </Carousel.Item>
 
@@ -134,7 +142,9 @@ export const Mobile = () => {
             </h1>
             <p>Additional upgrade bonus up to ₹ 10000 | ₹ 7000 cashback* on HDFC and ICICI bank cards</p>
             <Link to={"/"}>Learn More</Link>
-            <button><Link to={`/mobilesOverview`}>Buy now</Link></button>
+            <button onClick={()=>{
+        navigate('/mobilesOverview')
+    }}>Buy now</button>
           </Main> 
          
         </Carousel.Item>
@@ -153,7 +163,9 @@ export const Mobile = () => {
             </h1>
             <p>'M up for it all</p>
             <Link to={"/"}>Learn More</Link>
-            <button><Link to={`/mobilesOverview`}>Buy now</Link></button>
+            <button onClick={()=>{
+        navigate('/mobilesOverview')
+    }}>Buy now</button>
           </Main> 
          
 

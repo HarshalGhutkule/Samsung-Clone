@@ -1,8 +1,12 @@
 import styled from "styled-components";
 import Carousel from "react-bootstrap/Carousel";
 import { Link } from "react-router-dom";
+import {useNavigate} from 'react-router-dom'
 
 export const ReactCurousel = () => {
+
+  const navigate = useNavigate() 
+
   //styled component for Navbar
   const Main = styled(Carousel.Caption)`
     font-family: samsung400;
@@ -70,8 +74,10 @@ export const ReactCurousel = () => {
             </h1>
             
             <p style={{ lineHeight:"20px" }} >Change the way you play <br/> Free carry case worth  ₹5900*</p>
-            <Link to={"/"} >Learn More</Link>
-            <button>Pre-book now</button>
+            <Link to={"*"} >Learn More</Link>
+            <button onClick={()=>{
+        navigate('*')
+    }}>Pre-book now</button>
           </Main>
         </Carousel.Item>
 
@@ -85,8 +91,10 @@ export const ReactCurousel = () => {
           <Main style={{ margin: "150px -5%" }}>
             <h1>Galaxy Book 2 Series <br/> The New Way To PC</h1>
             <p>Pre Book Offer Are Live</p>
-            <Link to={"/"}>Learn More</Link>
-            <button>Buy now</button>
+            <Link to={"*"}>Learn More</Link>
+            <button onClick={()=>{
+        navigate('*')
+    }}>Buy now</button>
           </Main>
         </Carousel.Item>
 
@@ -102,7 +110,9 @@ export const ReactCurousel = () => {
             WindFree
             </h1>
             <p  style={{ color:'white', marginLeft:'2%' }}>Powerful and gentle cooling</p>
-            <button  style={{ backgroundColor:'white' ,color:'black'  } } >Buy Now </button>
+            <button  style={{ backgroundColor:'white' ,color:'black'  } } onClick={()=>{
+        navigate('*')
+    }}>Buy Now </button>
           </Main>
         </Carousel.Item>
 
@@ -121,8 +131,10 @@ export const ReactCurousel = () => {
             </h1>
             <p>Available exclusively on Samsung.com<br/>
             Get Watch4 at ₹ 2999* </p>
-            <Link to={"/"}>Learn More</Link>
-            <button>Pre-book now</button>
+            <Link to={"/mobilesOverview"}>Learn More</Link>
+            <button onClick={()=>{
+        navigate('/mobilesOverview')
+    }}>Pre-book now</button>
           </Main>
         </Carousel.Item>
 

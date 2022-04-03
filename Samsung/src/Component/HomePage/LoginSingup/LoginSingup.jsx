@@ -24,7 +24,7 @@ const l =()=>{
  // console.log(data)
  const data = JSON.stringify(ref.current);
 
- fetch("https://samsung-clone.herokuapp.com/login", {
+ fetch("https://samsung-clone.herokuapp.com/login",{
    method: "POST",
    body: data,
    headers: {

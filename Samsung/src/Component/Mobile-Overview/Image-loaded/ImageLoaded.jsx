@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import {useNavigate} from 'react-router-dom'
 
 export const ImageLoaded = ({image,title,description,top,color,margin}) => {
   const Main = styled.div`
@@ -8,8 +9,9 @@ export const ImageLoaded = ({image,title,description,top,color,margin}) => {
     color: ${color};
     margin-left: ${margin};
     text-align: left;
-    position:absolute;
-    top: ${top};
+    padding-top:10%;
+    /* position:absolute;
+    top: ${top}; */
 
     & h1 {
       font-family: SamsungSharpSans;
@@ -29,28 +31,33 @@ export const ImageLoaded = ({image,title,description,top,color,margin}) => {
     & button:hover {
       opacity: 75%;
     }
-    & a{
-      color:${color === "black" ? "white" : "black"};
-      text-decoration:none;
-    }
   `;
+
+  const SubMain = styled.div`
+    height:640px;
+    background-image:url(${image});
+  `;
+
+  const navigate = useNavigate();
 
   return (
     <div>
-      <div>
-        <img 
+      <SubMain>
+        {/* <img 
           src={image}
           alt={title}
           width={"100%"}
-        />
+        /> */}
         <Main>
           <h1>{title}</h1>
           <br />
           <p>{description}</p>
           <br />
-          <button><Link to={"/mobiles"}>See all</Link></button>
+          <button onClick={()=>{
+        navigate('/mobiles')
+    }}>See all</button>
         </Main>
-      </div>
+      </SubMain>
     </div>
   );
 };

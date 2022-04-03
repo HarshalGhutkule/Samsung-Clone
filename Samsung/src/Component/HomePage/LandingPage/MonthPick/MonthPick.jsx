@@ -1,7 +1,12 @@
 import styled from "styled-components";
 import Carousel from "react-bootstrap/Carousel";
 import { Link } from "react-router-dom";
+import {useNavigate} from 'react-router-dom'
+
 export const WhatsNew = () => {
+
+  const navigate = useNavigate() 
+
   //styled component for Navbar
   const Main = styled.div`
   & > div:nth-child(1) {
@@ -147,7 +152,9 @@ export const WhatsNew = () => {
                         <br />
                         <p style={{fontSize:"30px",textAlign:'center',}}>The Freestyle</p>
                         <p style={{fontSize:"14px", textAlign:'center'}}>Just launched.</p>
-                        <button id="forhover" >Learn more</button>
+                        <button id="forhover" onClick={()=>{
+        navigate('*')
+    }}>Learn more</button>
                     </div>
                     <div className="box1">
                         <span
@@ -172,7 +179,9 @@ export const WhatsNew = () => {
                         <br />
                         <p>The Frame Starting at ₹58990*</p>
                         <p style={{textAlign:'center'}}>Just launched.</p>
-                        <button>Learn more</button>
+                        <button onClick={()=>{
+        navigate('*')
+    }}>Learn more</button>
                     </div>
 
 
@@ -201,7 +210,9 @@ export const WhatsNew = () => {
                            textAlign:'center'
                         }}>1m 08cm (43") Crystal 4K UHD</p>
                         <p style={{textAlign:'center'}}>Just launched.</p>
-                        <button >Learn more</button>
+                        <button onClick={()=>{
+        navigate('*')
+    }}>Learn more</button>
                     </div>
                     <div className="box1" id="subBox2">
                     <span
@@ -227,7 +238,9 @@ export const WhatsNew = () => {
                             textAlign:'center'
                         }}>Neo QLED 4K Starting160990*</p>
                         <p style={{textAlign:'center'}}>Just launched.</p>
-                        <button >Learn more</button>
+                        <button onClick={()=>{
+        navigate('*')
+    }}>Learn more</button>
                     </div>
                     <div className="box1" id="subBox3">
                     <span
@@ -254,7 +267,9 @@ export const WhatsNew = () => {
                         }}>Crystal 4KUHD
                         Starting T51990*</p>
                         <p style={{textAlign:'center'}}>Just launched.</p>
-                        <button >Learn more</button>
+                        <button onClick={()=>{
+        navigate('*')
+    }}>Learn more</button>
                     </div>
                     </div>
                 </Main>
@@ -292,7 +307,9 @@ export const WhatsNew = () => {
                     />
                     <br />
                     <br />
-                    <button id="forhover">Learn more</button>
+                    <button id="forhover" onClick={()=>{
+        navigate('*')
+    }}>Learn more</button>
                 </div>
                 <div className="box1">
                     <span
@@ -318,7 +335,9 @@ export const WhatsNew = () => {
                     <br />
                     <p style={{textAlign:'center'}}>Galaxy Tab A7 Lite Lowest prices ever</p>
                     <p style={{textAlign:'center'}}>Just launched.</p>
-                    <button >Learn more</button>
+                    <button onClick={()=>{
+        navigate('*')
+    }}>Learn more</button>
                 </div>
 
 
@@ -347,7 +366,9 @@ export const WhatsNew = () => {
                        textAlign:'center'
                     }}>Galaxy Tab A8 Never before price</p>
                     <p style={{textAlign:'center'}}>Just launched.</p>
-                    <button>Learn more</button>
+                    <button onClick={()=>{
+        navigate('*')
+    }}>Learn more</button>
                 </div>
                 <div className="box1" id="subBox2">
                 <span
@@ -374,7 +395,9 @@ export const WhatsNew = () => {
                     }}>Galaxy Tab S6 Lite
                     Starting T27999*</p>
                     <p style={{textAlign:'center'}}>Just launched.</p>
-                    <button>Learn more</button>
+                    <button onClick={()=>{
+        navigate('*')
+    }}>Learn more</button>
                 </div>
                 <div className="box1" id="subBox3">
                 <span
@@ -400,7 +423,9 @@ export const WhatsNew = () => {
                        textAlign:'center'
                     }}>Galaxy Tab S7 FE Starting T 34999*</p>
                     <p style={{textAlign:'center'}}>Just launched.</p>
-                    <button>Learn more</button>
+                    <button onClick={()=>{
+        navigate('*')
+    }}>Learn more</button>
                 </div>
                 </div>
             </Main>
@@ -439,7 +464,9 @@ export const WhatsNew = () => {
                         />
                         <br />
                         <br />
-                        <button id="forhover">Learn more</button>
+                        <button id="forhover" onClick={()=>{
+        navigate('*')
+    }}>Learn more</button>
                     </div>
                     <div className="box1">
                         <span
@@ -465,7 +492,9 @@ export const WhatsNew = () => {
                         <br />
                         <p style={{textAlign:'center'}}>Intensive Dishwasher Starting T 35990*</p>
                         <p style={{textAlign:'center'}}>Just launched.</p>
-                        <button >Learn more</button>
+                        <button onClick={()=>{
+        navigate('*')
+    }}>Learn more</button>
                     </div>
 
 
@@ -494,7 +523,9 @@ export const WhatsNew = () => {
                            textAlign:'center'
                         }}>AI EcOBubble Starting 34390*</p>
                         <p style={{textAlign:'center'}}>Just launched.</p>
-                        <button >Learn more</button>
+                        <button onClick={()=>{
+        navigate('*')
+    }}>Learn more</button>
                     </div>
                     <div className="box1" id="subBox2">
                     <span
@@ -520,7 +551,9 @@ export const WhatsNew = () => {
                             textAlign:'center'
                         }}>Wobble Technology StartingT 20600*</p>
                         <p style={{textAlign:'center'}}>Just launched.</p>
-                        <button >Learn more</button>
+                        <button onClick={()=>{
+        navigate('*')
+    }}>Learn more</button>
                     </div>
                     <div className="box1" id="subBox3">
                     <span
@@ -546,7 +579,9 @@ export const WhatsNew = () => {
                            textAlign:'center'
                         }}>Cool. No Wind. WindFreeTM</p>
                         <p style={{textAlign:'center'}}>Just launched.</p>
-                        <button >Learn more</button>
+                        <button onClick={()=>{
+        navigate('*')
+    }}>Learn more</button>
                     </div>
                     </div>
                 </Main>
@@ -583,7 +618,9 @@ export const WhatsNew = () => {
                 <br />
                 <p style={{fontSize:"23px",marginTop:"2%" ,textAlign:'center'}}>Galaxy S22 Ultra</p>
                 <p style={{fontSize:"14px",textAlign:'center'}}>Just launched.</p>
-                <button id="forhover">Learn more</button>
+                <button id="forhover" onClick={()=>{
+        navigate('/mobilesOverview')
+    }}>Learn more</button>
               </div>
               <div className="box1">
                 <span
@@ -608,7 +645,9 @@ export const WhatsNew = () => {
                 <br />
                 <p>Galaxy S22 | S22+</p>
                 <p>Just launched.</p>
-                <button>Learn more</button>
+                <button onClick={()=>{
+        navigate('/mobilesOverview')
+    }}>Learn more</button>
               </div>
               <div className="box1" id="subBox1">
                 <span
@@ -631,7 +670,9 @@ export const WhatsNew = () => {
                 <br />
                 <p>Galaxy A53 5G</p>
                 <p>.</p>
-                <button>Learn more</button>
+                <button onClick={()=>{
+        navigate('/mobilesOverview')
+    }}>Learn more</button>
               </div>
               <div className="box1" id="subBox2">
               <span
@@ -654,7 +695,9 @@ export const WhatsNew = () => {
                 <br />
                 <p>Galaxy Z Fold3 5G</p>
                 <p>.</p>
-                <button>Learn more</button>
+                <button onClick={()=>{
+        navigate('/mobilesOverview')
+    }}>Learn more</button>
               </div>
               <div className="box1" id="subBox3">
               <span
@@ -677,7 +720,9 @@ export const WhatsNew = () => {
                 <br />
                 <p>Galaxy Z Flip3 5G</p>
                 <p>.</p>
-                <button>Learn more</button>
+                <button onClick={()=>{
+        navigate('/mobilesOverview')
+    }}>Learn more</button>
               </div>
             </div>
           </Main>

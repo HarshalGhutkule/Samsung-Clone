@@ -7,6 +7,7 @@ export const ScrollToTop = () => {
     position: fixed;
     bottom: 2em;
     right: 1em;
+    z-index:7;
     background-color: transparent;
     @media (max-width: 900px) {
       display: none;

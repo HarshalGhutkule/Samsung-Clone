@@ -76,10 +76,6 @@ export const LineupCard = ({id,cardWidth,productName,cardImage,colorImage,newBad
     & .buyNow:hover {
       opacity: 75%;
     }
-    & .buyNow > a{
-      color:white;
-      text-decoration:none;
-    }
   `;
 
   //function for image interval
@@ -171,7 +167,7 @@ export const LineupCard = ({id,cardWidth,productName,cardImage,colorImage,newBad
         <p>
           <span>₹ {(mobilePrice+discount).toFixed(2)}</span> <span>Save ₹{discount && discount.toFixed(2)}</span>
         </p>
-        <button className="buyNow"><Link to={`/mobilesDetail/${id}`}>Buy now</Link></button>
+        <Link to={`/mobilesDetail/${id}`}><button className="buyNow">Buy now</button></Link>
       </div>
     </Main>
   );

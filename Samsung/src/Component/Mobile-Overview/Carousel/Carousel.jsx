@@ -21,7 +21,7 @@ export const ReactCurousel = () => {
       text-decoration: none;
       color: black;
     }
-    & a:hover {
+    & .btmBorder:hover {
       border-bottom: 2px solid black;
     }
     & Button {
@@ -37,10 +37,6 @@ export const ReactCurousel = () => {
     }
     & Button:hover {
       opacity: 75%;
-    }
-    & Button > a{
-      color:white;
-      text-decoration:none;
     }
   `;
 
@@ -81,8 +77,8 @@ export const ReactCurousel = () => {
               Galaxy S22 Series
             </h1>
             <p>Get additional benefits worth ₹ 19000</p>
-            <Link to={"/"}>Learn More</Link>
-            <button><Link to={"/mobilesDetail/6245aa95302d60cadb16648d"}>Buy now</Link></button>
+            <Link className="btmBorder" to={"*"}>Learn More</Link>
+            <Link to={"/mobilesDetail/6245aa95302d60cadb16648d"}><button>Buy now</button></Link>
           </Main>
         </Carousel.Item>
         <Carousel.Item interval={2000}>
@@ -98,8 +94,8 @@ export const ReactCurousel = () => {
               Fold3 | Flip3 5G
             </h1>
             <p>Unfold your world</p>
-            <Link to={"/"}>Learn More</Link>
-            <button><Link to={"/mobilesDetail/62457d8f302d60cadb166485"}>Buy now</Link></button>
+            <Link className="btmBorder" to={"*"}>Learn More</Link>
+            <Link to={"/mobilesDetail/62457d8f302d60cadb166485"}><button>Buy now</button></Link>
           </Main>
         </Carousel.Item>
         <Carousel.Item>
@@ -111,8 +107,8 @@ export const ReactCurousel = () => {
           <Main style={{ marginLeft: "-5%" }}>
             <h1>Galaxy A52s 5G</h1>
             <p>Snapdragon 778G | 120Hz sAMOLED | 5G Guarantee</p>
-            <Link to={"/"}>Learn More</Link>
-            <button><Link to={"/mobilesDetail/6245bbfb302d60cadb166499"}>Buy now</Link></button>
+            <Link className="btmBorder" to={"*"}>Learn More</Link>
+            <Link to={"/mobilesDetail/6245bbfb302d60cadb166499"}><button>Buy now</button></Link>
           </Main>
         </Carousel.Item>
       </SubMain>

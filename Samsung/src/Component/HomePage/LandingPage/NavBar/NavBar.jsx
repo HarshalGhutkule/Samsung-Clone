@@ -32,13 +32,13 @@ export const NavBar = () =>{
     }}> Mobile</P>
     
          <P margin={'auto'}  cur={'pointer'}  fontf={'samsung700'} fontSize={'14px'}  bch={'black'} ch={'white'} ph={'6px'} brh={'20px'}  onClick={()=>{
-        navigate('*')
+        navigate('/mobilesOverview')
     }}> TV & AV</P>
          <P  margin={'auto'}   cur={'pointer'}  fontf={'samsung700'} fontSize={'14px'}  bch={'black'} ch={'white'} ph={'6px'} brh={'20px'} onClick={()=>{
-        navigate('*')
+        navigate('/mobilesOverview')
     }} > Home Appliances</P>
          <P margin={'auto'}   cur={'pointer'} fontf={'samsung700'} fontSize={'14px'}  bch={'black'} ch={'white'} ph={'6px'} brh={'20px'}  onClick={()=>{
-        navigate('*')
+        navigate('/mobilesOverview')
     }}> Laptops & Monitors</P>
          <P  margin={'auto'}   cur={'pointer'} fontf={'samsung700'} fontSize={'14px'}  bch={'black'} ch={'white'} ph={'6px'} brh={'20px'}  onClick={()=>{
         navigate('/mobilesOverview')

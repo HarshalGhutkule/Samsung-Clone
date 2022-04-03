@@ -1,8 +1,12 @@
 import styled from "styled-components";
 import Carousel from "react-bootstrap/Carousel";
 import { Link } from "react-router-dom";
+import {useNavigate} from 'react-router-dom'
 
 export const HomeAppliances = () => {
+
+  const navigate = useNavigate();
+
   //styled component for Navbar
   const Main = styled(Carousel.Caption)`
     font-family: samsung400;
@@ -37,10 +41,6 @@ export const HomeAppliances = () => {
     }
     & Button:hover {
       opacity: 75%;
-    }
-    & button > a{
-      text-decoration:none;
-      color:white;
     }
     
   `;
@@ -77,8 +77,10 @@ export const HomeAppliances = () => {
             </h1>
             
             <p style={{lineHeight:"20px",marginLeft:'24%' }} >Designed for you, by you</p>
-            <Link to={"/"} style={{ marginLeft:'24%' }}  >Learn More</Link>
-            <button><Link to={"*"}>Buy Now</Link></button>
+            <Link to={"*"} style={{ marginLeft:'24%' }}  >Learn More</Link>
+            <button onClick={()=>{
+        navigate('*')
+    }}>Buy Now</button>
           </Main>
         </Carousel.Item>
 
@@ -96,7 +98,9 @@ export const HomeAppliances = () => {
             
             <p style={{ lineHeight:"20px",marginLeft:'5%' }} >Makes tasty and hygienic curd</p>
             <Link to={"/"} style={{ marginLeft:'8%' }}  >Learn More</Link>
-            <button><Link to={"*"}>Buy Now</Link></button>
+            <button onClick={()=>{
+        navigate('*')
+    }}>Buy Now</button>
           </Main>
         </Carousel.Item>
 
@@ -115,7 +119,9 @@ export const HomeAppliances = () => {
             <p style={{ lineHeight:"20px",marginLeft:'15%' ,color:'white' }} >
             Eliminates up to 99.9% food bacteria*</p>
             <Link to={"/"} style={{ marginLeft:'18%' ,color:'white'  } }  >Learn More</Link>
-            <button style={{ backgroundColor:'white' ,color:'black'  } } ><Link style={{ color:'black'} } to={"*"}>Buy Now</Link></button>
+            <button style={{ backgroundColor:'white' ,color:'black'  } } onClick={()=>{
+        navigate('*')
+    }}>Buy Now</button>
           </Main>
         </Carousel.Item>
 
@@ -130,7 +136,9 @@ export const HomeAppliances = () => {
             WindFree
             </h1>
             <p  style={{ color:'white', marginLeft:'5%' }}>Powerful and gentle cooling</p>
-            <button  style={{ backgroundColor:'white' ,color:'black' ,marginLeft:'8%' } } ><Link style={{ color:'black'} } to={"*"}>Buy Now</Link></button>
+            <button  style={{ backgroundColor:'white' ,color:'black' ,marginLeft:'8%' } } onClick={()=>{
+        navigate('*')
+    }}>Buy Now</button>
           </Main>
         </Carousel.Item>
 

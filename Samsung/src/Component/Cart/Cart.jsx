@@ -246,7 +246,7 @@ let total=0;
                     <h6
                       style={{
                         marginLeft: "610px",
-                        marginTop: "-50px",
+                        marginTop: "0px",
                         textDecoration: "line-through",
                         fontFamily:"samsung700",
                         fontSize:"14px",
@@ -437,24 +437,25 @@ let total=0;
                 >₹{gst.toFixed(2)}</p>
               </Value>
               <Value>
-                <button
-                  style={{
-                    color: "white",
-                    backgroundColor: "black",
-                    width: "800px",
-                    height: "40px",
-                    marginTop: "20px",
-                    borderRadius: 20,
-                  }}
-                ><Link style={{
+                <Link style={{
                   color: "white",
                   textDecoration: "none",
                     fontFamily:"Samsung700",
                     fontSize:"14px"
                 }}
-                to={`/payment/${data && data[0]._id}`}>Pay Now</Link>
+                to={`/payment/${data && data[0]._id}`}>
+                  <button
+                  style={{
+                    color: "white",
+                    backgroundColor: "black",
+                    width: "280px",
+                    height: "40px",
+                    marginTop: "20px",
+                    borderRadius: 20,
+                  }}
+                >Pay Now</button></Link>
                   
-                </button>
+  
               </Value>
               <Final>
                 <p style={{

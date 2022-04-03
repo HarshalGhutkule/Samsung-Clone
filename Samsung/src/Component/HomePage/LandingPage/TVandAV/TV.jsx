@@ -1,8 +1,12 @@
 import styled from "styled-components";
 import Carousel from "react-bootstrap/Carousel";
 import { Link } from "react-router-dom";
+import {useNavigate} from 'react-router-dom'
 
 export const Tv = () => {
+
+  const navigate = useNavigate() 
+
   //styled component for Navbar
   const Main = styled(Carousel.Caption)`
     font-family: samsung400;
@@ -37,10 +41,6 @@ export const Tv = () => {
     }
     & Button:hover {
       opacity: 75%;
-    }
-    & button > a{
-      text-decoration:none;
-      color:white;
     }
   `;
   const SubMain = styled(Carousel)`
@@ -87,7 +87,9 @@ export const Tv = () => {
             
             <p style={{lineHeight:"20px",marginLeft:'24%' }} ></p>
             <Link to={"*"} style={{ marginLeft:'7%' }}  >Learn More</Link>
-            <button><Link to={"*"}>Buy Now</Link></button>
+            <button onClick={()=>{
+        navigate('*')
+    }}>Buy Now</button>
           </Main>
         </Carousel.Item>
 
@@ -104,8 +106,10 @@ export const Tv = () => {
       The Serif
       </h1>
       <p  style={{ color:'white', fontSize:'20px'  }}>Unconditionally beautiful</p>
-      <Link to={"/"} style={{ marginLeft:'3%' ,color:'white',borderBottom: '2px solid white' }}  >Learn More</Link>
-      <button style={{ backgroundColor:'white' ,color:'black' ,marginLeft:'3%' } }><Link to={"*"} style={{ color:'black'} }>Buy Now</Link></button>
+      <Link to={"*"} style={{ marginLeft:'3%' ,color:'white',borderBottom: '2px solid white' }}  >Learn More</Link>
+      <button style={{ backgroundColor:'white' ,color:'black' ,marginLeft:'3%' } } onClick={()=>{
+        navigate('*')
+    }}>Buy Now</button>
     </Main>
   </Carousel.Item>
 
@@ -120,7 +124,9 @@ export const Tv = () => {
           <h1  style={{color:'white', fontSize:'48px'  }}>
           Greatness never ends
           </h1>
-          <button  style={{ backgroundColor:'white' ,color:'black' ,marginLeft:'24%' } }><Link to={"*"} style={{ color:'black'} }>Buy Now</Link></button>
+          <button  style={{ backgroundColor:'white' ,color:'black' ,marginLeft:'24%' } } onClick={()=>{
+        navigate('*')
+    }}>Buy Now</button>
         </Main>
       </Carousel.Item>
 
@@ -139,8 +145,10 @@ export const Tv = () => {
             </h1>
             
             <p style={{lineHeight:"20px",marginLeft:'5%' }} ></p>
-            <Link to={"/"} style={{ marginLeft:'35%'  }}  ></Link>
-            <button><Link to={"*"}>Buy Now</Link></button>
+            <Link to={"*"} style={{ marginLeft:'35%'  }}  ></Link>
+            <button onClick={()=>{
+        navigate('*')
+    }}>Buy Now</button>
           </Main>
         </Carousel.Item>
 
@@ -162,8 +170,10 @@ export const Tv = () => {
             </h1>
             
             <p style={{ lineHeight:"20px",marginLeft:'5%' }} >Crystal Definition or Nothing</p>
-            <Link to={"/"} style={{ marginLeft:'8%' }}  >Learn More</Link>
-            <button><Link to={"*"}>Buy Now</Link></button>
+            <Link to={"*"} style={{ marginLeft:'8%' }}  >Learn More</Link>
+            <button onClick={()=>{
+        navigate('*')
+    }}>Buy Now</button>
           </Main>
         </Carousel.Item>
       </SubMain>

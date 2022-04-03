@@ -1,7 +1,7 @@
 import { LineupCard } from "../../Mobile-Overview/Lineup-card/LineupCard";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import {useNavigate} from 'react-router-dom'
 
 export const GalaxyNote = () => {
 
@@ -9,6 +9,8 @@ export const GalaxyNote = () => {
   let data = useSelector((store)=>store.compare);
 
   data = data.filter((a)=>a.product_name[7] == "N")
+
+  const navigate = useNavigate();
 
   const Main = styled.div`
     height: 800px;
@@ -53,7 +55,9 @@ export const GalaxyNote = () => {
       <br />
       <br />
       <br />
-      <button className="seeAll"><Link to={"/mobiles"}>See all</Link></button>
+      <button className="seeAll" onClick={()=>{
+        navigate('/mobiles')
+    }}>See all</button>
     </Main>
   );
 };

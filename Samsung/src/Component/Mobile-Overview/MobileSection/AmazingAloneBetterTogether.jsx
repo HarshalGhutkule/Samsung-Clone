@@ -1,11 +1,13 @@
 import { LineupCard } from "../../Mobile-Overview/Lineup-card/LineupCard";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import {useNavigate} from 'react-router-dom'
 
 export const AmazingAloneBetterTogether = () => {
 
   let data = useSelector((store)=>store.compare);
+
+  const navigate = useNavigate();
 
   const Main = styled.div`
     height: 800px;
@@ -54,7 +56,9 @@ export const AmazingAloneBetterTogether = () => {
       <br />
       <br />
       <br />
-      <button className="seeAll"><Link to={"/mobiles"}>See all</Link></button>
+      <button className="seeAll" onClick={()=>{
+        navigate('/mobiles')
+    }}>See all</button>
     </Main>
   );
 };

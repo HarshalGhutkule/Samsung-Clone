@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import {useNavigate} from 'react-router-dom'
 
 //styled component for Navbar
 const Main = styled.div`
@@ -91,6 +92,9 @@ const Main = styled.div`
 `;
 
 export const WhatsNew = () => {
+
+  const navigate = useNavigate();
+
   return (
     <Main>
       <div>
@@ -121,7 +125,9 @@ export const WhatsNew = () => {
           <br />
           <p style={{fontSize:"23px",marginTop:"2%"}}>Galaxy S22 Ultra</p>
           <p style={{fontSize:"14px"}}>Just launched.</p>
-          <button id="forhover"><Link to={"*"} style={{textDecoration:"none",color:"white"}}>Learn more</Link></button>
+          <button id="forhover" onClick={()=>{
+        navigate('*')
+    }}>Learn more</button>
         </div>
         <div className="box1">
           <span
@@ -146,7 +152,9 @@ export const WhatsNew = () => {
           <br />
           <p>Galaxy S22 | S22+</p>
           <p>Just launched.</p>
-          <button><Link to={"*"} style={{textDecoration:"none",color:"white"}}>Learn more</Link></button>
+          <button onClick={()=>{
+        navigate('*')
+    }}>Learn more</button>
         </div>
         <div className="box1" id="subBox1">
           <span
@@ -169,7 +177,9 @@ export const WhatsNew = () => {
           <br />
           <p>Galaxy A53 5G</p>
           <p>.</p>
-          <button><Link to={"*"} style={{textDecoration:"none",color:"white"}}>Learn more</Link></button>
+          <button onClick={()=>{
+        navigate('*')
+    }}>Learn more</button>
         </div>
         <div className="box1" id="subBox2">
         <span
@@ -192,7 +202,9 @@ export const WhatsNew = () => {
           <br />
           <p>Galaxy Z Fold3 5G</p>
           <p>.</p>
-          <button><Link to={"*"} style={{textDecoration:"none",color:"white"}}>Learn more</Link></button>
+          <button onClick={()=>{
+        navigate('*')
+    }}>Learn more</button>
         </div>
         <div className="box1" id="subBox3">
         <span
@@ -215,7 +227,9 @@ export const WhatsNew = () => {
           <br />
           <p>Galaxy Z Flip3 5G</p>
           <p>.</p>
-          <button><Link to={"*"} style={{textDecoration:"none",color:"white"}}>Learn more</Link></button>
+          <button onClick={()=>{
+        navigate('*')
+    }}>Learn more</button>
         </div>
       </div>
     </Main>
