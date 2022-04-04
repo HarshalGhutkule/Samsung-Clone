@@ -3,7 +3,7 @@ import Carousel from "react-bootstrap/Carousel";
 import { Link } from "react-router-dom";
 import {useNavigate} from 'react-router-dom'
 
-export const Tv = () => {
+export const Tv = ({setColorof}) => {
 
   const navigate = useNavigate() 
 
@@ -77,15 +77,15 @@ export const Tv = () => {
         <Carousel.Item   >
         <img
         className="d-block w-100"
-        src="https://images.samsung.com/is/image/samsung/assets/in/p6_gro1/p6_initial_home/5980_Samsung_QLED-4K-samsung.com-banners_07-9-2020_1440X810.jpg?$1440_810_JPG$"
+        src="https://images.samsung.com/is/image/samsung/assets/in/Freestyle_1440x810_0331.jpg?$1440_810_JPG$"
         alt="Second slide"
       />
           <Main  style={{ margin: "39% 20% 20% 25%"  }}>
             <h1>
-            A billion shades
+            The Freestyle
             </h1>
             
-            <p style={{lineHeight:"20px",marginLeft:'24%' }} ></p>
+            <p style={{lineHeight:"20px",marginLeft:'10%' }} >Change the Way you Play</p>
             <Link to={"*"} style={{ marginLeft:'7%' }}  >Learn More</Link>
             <button onClick={()=>{
         navigate('*')
@@ -96,11 +96,13 @@ export const Tv = () => {
 
 
         <Carousel.Item   >
+        {setColorof("white")}
         <img
         className="d-block w-100"
         src="https://images.samsung.com/is/image/samsung/assets/in/p6_gro1/p6_initial_home/4896-Serif-Banner-P6_1440X810.jpg?$1440_810_JPG$"
         alt="Second slide"
       />
+      
       <Main  style={{ margin: "38% 20% 20% 25%"  }}> 
       <h1  style={{color:'white'}}>
       The Serif

@@ -65,7 +65,7 @@ export const ReactCurousel = () => {
         <Carousel.Item interval={1500}>
         <img
         className="d-block w-100"
-        src="https://images.samsung.com/is/image/samsung/assets/in/Freestyle_1440x640_new1.jpg?imwidth=768"
+        src="https://images.samsung.com/is/image/samsung/assets/in/Freestyle_1440x640_0331.jpg?imwidth=1366"
         alt="Second slide"
       />
           <Main  style={{ margin: "50px -8%" }}>
@@ -85,12 +85,12 @@ export const ReactCurousel = () => {
         <Carousel.Item interval={1500}>
           <img
             className="d-block w-100"
-            src="https://images.samsung.com/is/image/samsung/assets/in/Galaxy_Book2_Series_banner_1440x6401.jpg?imwidth=768"
+            src="https://images.samsung.com/is/image/samsung/assets/in/A73-Main_KV_Desktop_1440x640-2.jpg?imwidth=1366"
             alt="Third slide"
           />
-          <Main style={{ margin: "150px -5%" }}>
-            <h1>Galaxy Book 2 Series <br/> The New Way To PC</h1>
-            <p>Pre Book Offer Are Live</p>
+          <Main style={{ margin: "150px 0% 0% 36%" }}>
+            <h1>Galaxy A73 5G</h1>
+            <p>Pre-reserve at ₹ 1999<br/>Get Galaxy Buds Live at ₹ 499 only</p>
             <Link to={"*"}>Learn More</Link>
             <button onClick={()=>{
         navigate('*')
@@ -102,7 +102,7 @@ export const ReactCurousel = () => {
         <Carousel.Item  interval={1500}  >
         <img
         className="d-block w-100"
-        src="https://images.samsung.com/is/image/samsung/assets/in/11166_Dotcom_Windfree_AC_Banner_1440x6401.jpg?imwidth=768"
+        src="https://images.samsung.com/is/image/samsung/assets/in/11166_Dotcom_Windfree_AC_Banner_1440x6401.jpg?imwidth=1366"
         alt="Second slide"
       />
           <Main  > 
@@ -120,7 +120,7 @@ export const ReactCurousel = () => {
         <Carousel.Item  interval={1500}>
         <img
         className="d-block w-100"
-        src="https://images.samsung.com/is/image/samsung/assets/in/11316-S22-Ultra-1TB_Banners_1440x640_updated_disclaimer.jpg?imwidth=768"
+        src="https://images.samsung.com/is/image/samsung/assets/in/11316-S22-Ultra-1TB_Banners_1440x640_updated_disclaimer.jpg?imwidth=1366"
         alt="Second slide"
       />
           <Main style={{

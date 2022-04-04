@@ -8,13 +8,15 @@ import { Mobile } from "../Mobile/Mobile"
 import { Tv } from "../TVandAV/TV"
 import { HomeAppliances } from "../HomeAppliance/HomeAppliances"
 import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch} from "react-redux";
 import { compareData } from "../../../../Redux/action";
 
 export const Home = () =>{
 
     const dispatch = useDispatch();
+
+    const [colorof, setColorof] = useState("black");
 
     useEffect(()=>{
         getData();
@@ -54,9 +56,10 @@ export const Home = () =>{
             textAlign:'center',
             position: 'absolute',
             left: '45%',
-            zIndex: '1'
+            zIndex: '1',
+            color:{colorof},
         }}>TV & AV</h1>
-        <Tv/>
+        <Tv colorof={colorof} setColorof={setColorof}/>
 
         <h1 style={{
             margin:'70px -4.5% 20px',
