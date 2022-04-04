@@ -1,5 +1,7 @@
 # Samsung-Clone
 
+Backend API for a samsung [https://github.com/HarshalGhutkule/Samsung-Backend.git]
+
 Samsung helps you discover a wide range of home electronics with cutting-edge technology including smartphones, tablets, TVs, home appliances and more.
 A collaborative project built by a team of 5 executed in 5 days.
 
